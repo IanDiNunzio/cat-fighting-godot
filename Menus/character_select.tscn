@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://dsxb312862gf7"]
+
+[ext_resource type="Script" uid="uid://c48bnmr0xypka" path="res://Menus/character_select.gd" id="1_5duen"]
+[ext_resource type="Texture2D" uid="uid://blbwn1wdikvip" path="res://Imagenes/23b1af78-e05a-4534-b6bd-1781b7ad09aa.png" id="1_tddig"]
+[ext_resource type="Texture2D" uid="uid://stafc8fdpk20" path="res://Imagenes/retrato1.png" id="3_aoibv"]
+[ext_resource type="Texture2D" uid="uid://dppra34rcmpdc" path="res://Imagenes/p1.png" id="4_3p5vd"]
+[ext_resource type="Texture2D" uid="uid://b2bh3eulktf5s" path="res://Imagenes/retrato2cambiar.png" id="4_mn8d4"]
+[ext_resource type="Texture2D" uid="uid://c08dps4yqpjdq" path="res://Imagenes/retrato3.png" id="5_7yigr"]
+[ext_resource type="Texture2D" uid="uid://kwduri1rfmxp" path="res://Imagenes/p2.png" id="5_vmvrc"]
+[ext_resource type="Texture2D" uid="uid://d2vnjjxqbh0w3" path="res://Imagenes/retrato4.png" id="6_4hbjg"]
+[ext_resource type="Texture2D" uid="uid://ghec2qte4k44" path="res://Imagenes/p3.png" id="6_v4cpe"]
+[ext_resource type="Texture2D" uid="uid://wobkschaijsx" path="res://Imagenes/p4.png" id="7_p42tr"]
+
+[node name="CharacterSelect" type="Control" unique_id=543849244]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5duen")
+
+[node name="Background" type="TextureRect" parent="." unique_id=308078261]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tddig")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=202506907]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.0
+offset_right = 71.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1305818493]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1742650434]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Select a character!"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=1640065749]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/CenterContainer" unique_id=2121429825]
+layout_mode = 2
+columns = 2
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" unique_id=2029759217]
+custom_minimum_size = Vector2(150, 159)
+layout_mode = 2
+texture_normal = ExtResource("3_aoibv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton" unique_id=1629011022]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="P1Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton" unique_id=564456061]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_3p5vd")
+expand_mode = 1
+
+[node name="P2Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton" unique_id=1460639610]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_vmvrc")
+expand_mode = 1
+
+[node name="P3Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton" unique_id=1843557016]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_v4cpe")
+expand_mode = 1
+
+[node name="P4Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton" unique_id=313656230]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_p42tr")
+expand_mode = 1
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" unique_id=1307631764]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("4_mn8d4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="P1Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton2" unique_id=654981602]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_3p5vd")
+expand_mode = 1
+
+[node name="P2Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton2" unique_id=2126540022]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_vmvrc")
+expand_mode = 1
+
+[node name="P3Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton2" unique_id=1000641679]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_v4cpe")
+expand_mode = 1
+
+[node name="P4Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton2" unique_id=359276327]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_p42tr")
+expand_mode = 1
+
+[node name="TextureButton3" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" unique_id=905961083]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("5_7yigr")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="P1Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton3" unique_id=1939757488]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_3p5vd")
+expand_mode = 1
+
+[node name="P2Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton3" unique_id=543386574]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_vmvrc")
+expand_mode = 1
+
+[node name="P3Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton3" unique_id=2080102755]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_v4cpe")
+expand_mode = 1
+
+[node name="P4Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton3" unique_id=2045022527]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_p42tr")
+expand_mode = 1
+
+[node name="TextureButton4" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" unique_id=2063200442]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("6_4hbjg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="P1Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton4" unique_id=1643765532]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_3p5vd")
+expand_mode = 1
+
+[node name="P2Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton4" unique_id=1154311143]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_vmvrc")
+expand_mode = 1
+
+[node name="P3Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton4" unique_id=824079907]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_v4cpe")
+expand_mode = 1
+
+[node name="P4Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton4" unique_id=133506351]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_p42tr")
+expand_mode = 1
+
+[node name="PreviewPanel" type="Panel" parent="." unique_id=1558287891]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterImage" type="TextureRect" parent="PreviewPanel" unique_id=164811308]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 3
+
+[node name="CharacterName" type="Label" parent="PreviewPanel" unique_id=1750425164]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 400.0
+offset_top = -148.0
+offset_right = 500.0
+offset_bottom = -98.0
+grow_vertical = 0
+
+[node name="StatsContainer" type="VBoxContainer" parent="PreviewPanel" unique_id=1670926820]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = -77.0
+offset_right = 700.0
+grow_vertical = 0
+
+[node name="Speed" type="Label" parent="PreviewPanel/StatsContainer" unique_id=437384054]
+layout_mode = 2
+
+[node name="Attack" type="Label" parent="PreviewPanel/StatsContainer" unique_id=1551669243]
+layout_mode = 2
+
+[node name="Jump" type="Label" parent="PreviewPanel/StatsContainer" unique_id=1270206938]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1773541540]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="HBoxContainer" unique_id=24596792]
+layout_mode = 2
+text = "Return"
+
+[node name="Space" type="Control" parent="HBoxContainer" unique_id=357030965]
+layout_mode = 2
+
+[node name="ReadyButton" type="Button" parent="HBoxContainer" unique_id=821676926]
+layout_mode = 2
+text = "Ready"
+
+[node name="AnimatedBackground" type="Node2D" parent="." unique_id=589821876]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="AnimatedBackground" unique_id=197882128]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedBackground" unique_id=1533615471]
+
+[node name="Audio" type="Node" parent="." unique_id=1702921107]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=941897524]
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=294916160]
+
+[node name="AnnouncerPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=367476601]
+
+[node name="PlayerCountContainer" type="HBoxContainer" parent="." unique_id=805901732]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = 76.0
+offset_right = 44.5
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Btn2Players" type="Button" parent="PlayerCountContainer" unique_id=474336876]
+layout_mode = 2
+text = "2P"
+
+[node name="Btn3Players" type="Button" parent="PlayerCountContainer" unique_id=71628499]
+layout_mode = 2
+text = "3P"
+
+[node name="Btn4Players" type="Button" parent="PlayerCountContainer" unique_id=1347275004]
+layout_mode = 2
+text = "4P"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/GridContainer/TextureButton4" to="." method="_on_texture_button_4_pressed"]
+[connection signal="pressed" from="HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="PlayerCountContainer/Btn2Players" to="." method="_on_btn_2_players_pressed"]
+[connection signal="pressed" from="PlayerCountContainer/Btn3Players" to="." method="_on_btn_3_players_pressed"]
+[connection signal="pressed" from="PlayerCountContainer/Btn4Players" to="." method="_on_btn_4_players_pressed"]

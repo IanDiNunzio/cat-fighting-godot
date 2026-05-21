@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://4r3u1fjklgqv"]
+
+[ext_resource type="Script" uid="uid://n8qamjedji8r" path="res://Characters/black_cat.gd" id="1_x46l8"]
+[ext_resource type="Texture2D" uid="uid://cfao8pkfc2mye" path="res://Imagenes/spritesheet1.png" id="2_8q536"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gf1ix"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pmi2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpf1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8i6a"]
+
+[node name="BlackCat" type="CharacterBody2D" unique_id=129876696]
+script = ExtResource("1_x46l8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=774687406]
+position = Vector2(500, 300)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_8q536")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1365572131]
+shape = SubResource("CapsuleShape2D_gf1ix")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1993121764]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1863020534]
+shape = SubResource("CapsuleShape2D_pmi2h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=93811069]
+
+[node name="PlayerName" type="Label" parent="." unique_id=292238840]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Hitboxes" type="Node2D" parent="." unique_id=394175480]
+
+[node name="LightAttack" type="Area2D" parent="Hitboxes" unique_id=1824562846]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/LightAttack" unique_id=1660326760]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_fpf1d")
+
+[node name="HeavyAttack" type="Area2D" parent="Hitboxes" unique_id=936185640]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/HeavyAttack" unique_id=882495220]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_h8i6a")
+
+[connection signal="body_entered" from="Hitboxes/LightAttack" to="." method="_on_light_attack_body_entered"]
+[connection signal="body_entered" from="Hitboxes/HeavyAttack" to="." method="_on_heavy_attack_body_entered"]

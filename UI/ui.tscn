@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://dngef432ameqx"]
+
+[node name="UI" type="CanvasLayer" unique_id=233709256]
+
+[node name="CharacterName" type="Label" parent="." unique_id=505050554]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HUD" type="Control" parent="." unique_id=740189724]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopUI" type="Control" parent="HUD" unique_id=1371578531]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
+
+[node name="TimeContainer" type="CenterContainer" parent="HUD/TopUI" unique_id=1177542845]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 106.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TimeLabel" type="Label" parent="HUD/TopUI/TimeContainer" unique_id=567586337]
+layout_mode = 2
+
+[node name="MatchInfo" type="HBoxContainer" parent="HUD/TopUI" unique_id=1070275517]
+layout_mode = 1
+offset_right = 1154.0
+offset_bottom = 40.0
+
+[node name="RoundLabel" type="Label" parent="HUD/TopUI/MatchInfo" unique_id=1386157234]
+layout_mode = 2
+
+[node name="ModeLabel" type="Label" parent="HUD/TopUI/MatchInfo" unique_id=1786038026]
+layout_mode = 2
+
+[node name="BottomUI" type="Control" parent="HUD" unique_id=1115713997]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -184.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="P1Anchor" type="MarginContainer" parent="HUD/BottomUI" unique_id=1629940232]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 290.0
+offset_bottom = 150.0
+
+[node name="P1_HUD" type="Panel" parent="HUD/BottomUI/P1Anchor" unique_id=557934317]
+layout_mode = 2
+
+[node name="CharacterIcon" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1286780537]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerName" type="Label" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1680018024]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DamageLabel" type="Label" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1860427045]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=572179895]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stock1" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD/StockContainer" unique_id=1079507813]
+layout_mode = 2
+
+[node name="Stock2" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD/StockContainer" unique_id=1367699819]
+layout_mode = 2
+
+[node name="Stock3" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD/StockContainer" unique_id=1419609846]
+layout_mode = 2
+
+[node name="P2Anchor" type="MarginContainer" parent="HUD/BottomUI" unique_id=1399838252]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 540.0
+offset_bottom = 150.0
+
+[node name="P2_HUD" type="Panel" parent="HUD/BottomUI/P2Anchor" unique_id=2096493525]
+layout_mode = 2
+
+[node name="CharacterIcon" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=851525043]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerName" type="Label" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=1745668891]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DamageLabel" type="Label" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=1733052051]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=170787289]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stock1" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD/StockContainer" unique_id=995598979]
+layout_mode = 2
+
+[node name="Stock2" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD/StockContainer" unique_id=91782583]
+layout_mode = 2
+
+[node name="Stock3" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD/StockContainer" unique_id=1748131035]
+layout_mode = 2
+
+[node name="P3Anchor" type="MarginContainer" parent="HUD/BottomUI" unique_id=485746294]
+layout_mode = 0
+offset_left = 650.0
+offset_right = 790.0
+offset_bottom = 150.0
+
+[node name="P3_HUD" type="Panel" parent="HUD/BottomUI/P3Anchor" unique_id=1593116757]
+layout_mode = 2
+
+[node name="CharacterIcon" type="TextureRect" parent="HUD/BottomUI/P3Anchor/P3_HUD" unique_id=1323338566]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerName" type="Label" parent="HUD/BottomUI/P3Anchor/P3_HUD" unique_id=1448304737]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DamageLabel" type="Label" parent="HUD/BottomUI/P3Anchor/P3_HUD" unique_id=1246790090]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P3Anchor/P3_HUD" unique_id=1733985032]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stock1" type="TextureRect" parent="HUD/BottomUI/P3Anchor/P3_HUD/StockContainer" unique_id=1394868366]
+layout_mode = 2
+
+[node name="Stock2" type="TextureRect" parent="HUD/BottomUI/P3Anchor/P3_HUD/StockContainer" unique_id=1895709076]
+layout_mode = 2
+
+[node name="Stock3" type="TextureRect" parent="HUD/BottomUI/P3Anchor/P3_HUD/StockContainer" unique_id=1237209628]
+layout_mode = 2
+
+[node name="P4Anchor" type="MarginContainer" parent="HUD/BottomUI" unique_id=633432385]
+layout_mode = 0
+offset_left = 900.0
+offset_right = 1040.0
+offset_bottom = 150.0
+
+[node name="P4_HUD" type="Panel" parent="HUD/BottomUI/P4Anchor" unique_id=1238466277]
+layout_mode = 2
+
+[node name="CharacterIcon" type="TextureRect" parent="HUD/BottomUI/P4Anchor/P4_HUD" unique_id=1799129453]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerName" type="Label" parent="HUD/BottomUI/P4Anchor/P4_HUD" unique_id=1919725397]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DamageLabel" type="Label" parent="HUD/BottomUI/P4Anchor/P4_HUD" unique_id=1548517252]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P4Anchor/P4_HUD" unique_id=656603170]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stock1" type="TextureRect" parent="HUD/BottomUI/P4Anchor/P4_HUD/StockContainer" unique_id=1231553278]
+layout_mode = 2
+
+[node name="Stock2" type="TextureRect" parent="HUD/BottomUI/P4Anchor/P4_HUD/StockContainer" unique_id=1063903711]
+layout_mode = 2
+
+[node name="Stock3" type="TextureRect" parent="HUD/BottomUI/P4Anchor/P4_HUD/StockContainer" unique_id=1009940577]
+layout_mode = 2
+
+[node name="CenterEffects" type="CenterContainer" parent="HUD" unique_id=58842366]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CountdownLabel" type="Label" parent="HUD/CenterEffects" unique_id=1825681231]
+layout_mode = 2
+
+[node name="GOLabel" type="Label" parent="HUD/CenterEffects" unique_id=566219101]
+layout_mode = 2
+
+[node name="KOLabel" type="Label" parent="HUD/CenterEffects" unique_id=437077951]
+layout_mode = 2

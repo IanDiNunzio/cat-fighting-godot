@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bkc7yylac5ai1"]
+
+[ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="1_gojnm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2mv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7g2b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ptq8"]
+
+[node name="TestLevel" type="Node2D" unique_id=570728777]
+
+[node name="Background" type="TextureRect" parent="." unique_id=599271748]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1144742471]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=195081927]
+shape = SubResource("RectangleShape2D_1c2mv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1429165400]
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=2045654527]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=2040698297]
+shape = SubResource("RectangleShape2D_f7g2b")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=805872623]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1756146466]
+shape = SubResource("RectangleShape2D_4ptq8")
+
+[node name="SpawnP1" type="Marker2D" parent="." unique_id=914451689]
+
+[node name="SpawnP2" type="Marker2D" parent="." unique_id=1253964043]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=745481527]
+
+[node name="UI" parent="." unique_id=233709256 instance=ExtResource("1_gojnm")]

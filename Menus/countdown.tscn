@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://2e0ofemsjchg"]
+
+[node name="Countdown" type="Control" unique_id=1003176734]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2042850667]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 50.0
+offset_right = 250.0
+offset_bottom = 73.0
+grow_horizontal = 2
+
+[node name="CountdownLabel" type="Label" parent="CenterContainer" unique_id=147062252]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=812973946]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1381941599]

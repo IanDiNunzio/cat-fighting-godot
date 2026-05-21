@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://deesx4ygfdthk"]
+
+[ext_resource type="Texture2D" uid="uid://c67ft3vf1be3" path="res://Imagenes/azoteaimagen.png" id="1_2db0o"]
+[ext_resource type="Texture2D" uid="uid://bs1ohwhtngkf6" path="res://Imagenes/calleimagen.png" id="2_sn3u0"]
+[ext_resource type="Texture2D" uid="uid://d2syc6r85ekom" path="res://Imagenes/parqueimagen.png" id="3_3o3bh"]
+
+[node name="LevelSelector" type="CanvasLayer" unique_id=925782640]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1140954609]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -502.0
+offset_top = -246.5
+offset_right = 502.0
+offset_bottom = 246.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=694080007]
+layout_mode = 2
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/GridContainer" unique_id=618294837]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer" unique_id=583616162]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_2db0o")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer" unique_id=1895289215]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Rooftop"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/GridContainer" unique_id=1613933082]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer2" unique_id=2142848853]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_sn3u0")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer2" unique_id=1511252261]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Street"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/GridContainer" unique_id=174407647]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer3" unique_id=1227591604]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_3o3bh")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer3" unique_id=1126448367]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Park"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/GridContainer" unique_id=496875274]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer4" unique_id=1772150731]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_2db0o")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer4" unique_id=795350049]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Beach"
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=1959138099]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return"
