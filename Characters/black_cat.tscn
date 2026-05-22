@@ -1,7 +1,91 @@
 [gd_scene format=3 uid="uid://4r3u1fjklgqv"]
 
 [ext_resource type="Script" uid="uid://n8qamjedji8r" path="res://Characters/black_cat.gd" id="1_x46l8"]
-[ext_resource type="Texture2D" uid="uid://cfao8pkfc2mye" path="res://Imagenes/spritesheet1.png" id="2_8q536"]
+[ext_resource type="Texture2D" uid="uid://chnnxo1o7okwo" path="res://Imagenes/sh1attack.png" id="2_q1l2b"]
+[ext_resource type="Texture2D" uid="uid://dpcm0wh88uvx0" path="res://Imagenes/sh1jumpinghurt.png" id="3_wlte2"]
+[ext_resource type="Texture2D" uid="uid://8rlnx5r2ct5p" path="res://Imagenes/sh1walking.png" id="4_wlte2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5g2q"]
+atlas = ExtResource("2_q1l2b")
+region = Rect2(675, 690, 225, 230)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7i8r"]
+atlas = ExtResource("3_wlte2")
+region = Rect2(555, 748, 185, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlte2"]
+atlas = ExtResource("4_wlte2")
+region = Rect2(1344, 380, 192, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyrwy"]
+atlas = ExtResource("3_wlte2")
+region = Rect2(492, 402, 164, 201)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70pdf"]
+atlas = ExtResource("2_q1l2b")
+region = Rect2(400, 214, 200, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqnmn"]
+atlas = ExtResource("4_wlte2")
+region = Rect2(400, 380, 200, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i4ym"]
+atlas = ExtResource("4_wlte2")
+region = Rect2(1152, 380, 192, 190)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1l2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5g2q")
+}],
+"loop": true,
+"name": &"HeavyAttack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7i8r")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlte2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyrwy")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70pdf")
+}],
+"loop": true,
+"name": &"LightAttack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqnmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i4ym")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gf1ix"]
 
@@ -14,10 +98,12 @@
 [node name="BlackCat" type="CharacterBody2D" unique_id=129876696]
 script = ExtResource("1_x46l8")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=774687406]
-position = Vector2(500, 300)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141691243]
+position = Vector2(-0.99999994, -3.9999998)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_8q536")
+sprite_frames = SubResource("SpriteFrames_q1l2b")
+animation = &"Idle"
+frame_progress = 0.6500688
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1365572131]
 shape = SubResource("CapsuleShape2D_gf1ix")
@@ -29,22 +115,24 @@ shape = SubResource("CapsuleShape2D_pmi2h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=93811069]
 
-[node name="PlayerName" type="Label" parent="." unique_id=292238840]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="PlayerNumber" type="Label" parent="." unique_id=292238840]
+offset_left = -12.0
+offset_top = -40.0
+offset_right = 13.0
+offset_bottom = -17.0
 
 [node name="Hitboxes" type="Node2D" parent="." unique_id=394175480]
 
 [node name="LightAttack" type="Area2D" parent="Hitboxes" unique_id=1824562846]
+position = Vector2(20, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/LightAttack" unique_id=1660326760]
-position = Vector2(20, 0)
 shape = SubResource("RectangleShape2D_fpf1d")
 
 [node name="HeavyAttack" type="Area2D" parent="Hitboxes" unique_id=936185640]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/HeavyAttack" unique_id=882495220]
-position = Vector2(10, 0)
+scale = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_h8i6a")
 
 [connection signal="body_entered" from="Hitboxes/LightAttack" to="." method="_on_light_attack_body_entered"]

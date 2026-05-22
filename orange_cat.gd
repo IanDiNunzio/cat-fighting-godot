@@ -3,7 +3,7 @@ extends CharacterBody2D
 # =========================
 # PLAYER
 # =========================
-@export var player_id := 2
+@export var player_id := 1
 
 # =========================
 # MOVIMIENTO
@@ -13,20 +13,17 @@ extends CharacterBody2D
 @export var gravity := 1200.0
 
 # =========================
-# VIDA
+# VIDA Y STOCKS
 # =========================
 @export var max_hp := 100
-
-var hp := max_hp
-var dead := false
-
-# =========================
-# STOCKS / VIDAS
-# =========================
 @export var max_stocks := 3
 
+var hp := max_hp
 var stocks := max_stocks
 
+# =========================
+# RESPAWN
+# =========================
 @export var respawn_position := Vector2(500, 200)
 
 # =========================
@@ -37,6 +34,7 @@ var stocks := max_stocks
 
 var attacking := false
 var can_take_damage := true
+var dead := false
 
 # Dirección
 var facing_direction := 1
@@ -45,7 +43,6 @@ var facing_direction := 1
 # NODOS
 # =========================
 @onready var anim = $AnimatedSprite2D
-@onready var sprite = $AnimatedSprite2D
 
 @onready var player_number = $PlayerNumber
 
@@ -57,7 +54,7 @@ var facing_direction := 1
 # =========================
 func _ready():
 
-	# Texto P2
+	# Texto P1
 	player_number.text = "P" + str(player_id)
 
 	# Color del texto
@@ -84,11 +81,11 @@ func _ready():
 
 	respawn_position = spawn_point.global_position
 
-	# Hitboxes apagadas al empezar
+	# Hitboxes apagadas
 	light_hitbox.monitoring = false
 	heavy_hitbox.monitoring = false
 
-	# Conectar señales
+	# Señales
 	light_hitbox.body_entered.connect(_on_light_attack_hit)
 	heavy_hitbox.body_entered.connect(_on_heavy_attack_hit)
 
@@ -100,21 +97,27 @@ func _physics_process(delta):
 	if dead:
 		return
 
-	# Gravedad
+	# =========================
+	# GRAVEDAD
+	# =========================
 	if !is_on_floor():
 		velocity.y += gravity * delta
 
-	# Salto
-	if Input.is_action_just_pressed("jumpp2") and is_on_floor():
+	# =========================
+	# SALTO
+	# =========================
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_force
 
-	# Movimiento
+	# =========================
+	# MOVIMIENTO
+	# =========================
 	var direction := 0
 
-	if Input.is_action_pressed("leftp2"):
+	if Input.is_action_pressed("left"):
 		direction = -1
 
-	if Input.is_action_pressed("rightp2"):
+	if Input.is_action_pressed("right"):
 		direction = 1
 
 	# Girar personaje
@@ -122,30 +125,32 @@ func _physics_process(delta):
 
 		facing_direction = direction
 
-		sprite.flip_h = direction < 0
+		anim.flip_h = direction < 0
 
-		# Girar hitboxes
 		$Hitboxes.scale.x = direction
 
-	# Mover solo si no ataca
+	# Movimiento
 	if !attacking:
 		velocity.x = direction * speed
 	else:
 		velocity.x = 0
 
-	# Ataque ligero
-	if Input.is_action_just_pressed("lightattackp2") and !attacking:
+	# =========================
+	# ATAQUES
+	# =========================
+	if Input.is_action_just_pressed("light_attack") and !attacking:
 		light_attack()
 
-	# Ataque pesado
-	if Input.is_action_just_pressed("heavyattackp2") and !attacking:
+	if Input.is_action_just_pressed("heavy_attack") and !attacking:
 		heavy_attack()
 
 	move_and_slide()
 
 	update_animations(direction)
 
-	# Caer del mapa
+	# =========================
+	# CAER DEL MAPA
+	# =========================
 	if global_position.y > 2000:
 		die()
 
@@ -183,7 +188,7 @@ func light_attack():
 
 	light_hitbox.monitoring = true
 
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.15).timeout
 
 	light_hitbox.monitoring = false
 
@@ -202,16 +207,16 @@ func heavy_attack():
 
 	heavy_hitbox.monitoring = true
 
-	await get_tree().create_timer(0.35).timeout
+	await get_tree().create_timer(0.3).timeout
 
 	heavy_hitbox.monitoring = false
 
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.25).timeout
 
 	attacking = false
 
 # =========================
-# HACER DAÑO
+# GOLPES
 # =========================
 func _on_light_attack_hit(body):
 
@@ -241,7 +246,7 @@ func take_damage(amount):
 
 	hp -= amount
 
-	print(name, " recibió daño. HP: ", hp)
+	print(name, " HP: ", hp)
 
 	can_take_damage = false
 
