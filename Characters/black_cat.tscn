@@ -95,7 +95,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8i6a"]
 
-[node name="BlackCat" type="CharacterBody2D" unique_id=129876696]
+[node name="BlackCat" type="CharacterBody2D" unique_id=129876696 groups=["players"]]
 script = ExtResource("1_x46l8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141691243]
