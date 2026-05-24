@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://3nt662xkwndg"]
 
 [ext_resource type="Texture2D" uid="uid://dy1j1wtvl7h53" path="res://Imagenes/RoofTop.png" id="1_a2tvx"]
+[ext_resource type="Script" uid="uid://c7ay1i6hw1grv" path="res://Scripts/Hazard_plataforma.gd" id="2_2nm55"]
 [ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="2_jxu3m"]
 [ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://orange_cat.tscn" id="3_2nm55"]
 [ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="4_lwfkr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44bi0"]
+size = Vector2(333, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwfkr"]
 size = Vector2(333, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8akg"]
@@ -31,11 +35,27 @@ texture = ExtResource("1_a2tvx")
 
 [node name="plataforma colgante" type="StaticBody2D" parent="." unique_id=1176759849]
 position = Vector2(964, 364)
+script = ExtResource("2_2nm55")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma colgante" unique_id=2094523543]
 position = Vector2(-4.5, 0)
 shape = SubResource("RectangleShape2D_44bi0")
 one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="plataforma colgante" unique_id=1593463860]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma colgante/Area2D" unique_id=1076818371]
+position = Vector2(-7, 1)
+shape = SubResource("RectangleShape2D_lwfkr")
+
+[node name="Timer" type="Timer" parent="plataforma colgante" unique_id=693607742]
+
+[node name="ColorRect" type="ColorRect" parent="plataforma colgante" unique_id=977477057]
+offset_left = -173.0
+offset_top = -9.0
+offset_right = 164.0
+offset_bottom = 9.0
+color = Color(0.5882353, 1, 1, 0.5176471)
 
 [node name="Tanque" type="StaticBody2D" parent="." unique_id=1444214894]
 position = Vector2(575, 525)
@@ -92,3 +112,6 @@ amount = 300
 amount_ratio = 0.8
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_a2tvx")
+
+[connection signal="body_entered" from="plataforma colgante/Area2D" to="plataforma colgante" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="plataforma colgante/Timer" to="plataforma colgante" method="_on_timer_timeout"]
