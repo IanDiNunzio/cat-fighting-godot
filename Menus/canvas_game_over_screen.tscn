@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://gjs5hbhhe1sj"]
+
+[ext_resource type="Script" uid="uid://deo2n7ew2boc7" path="res://Menus/canvas_game_over_screen.gd" id="1_ias4a"]
+[ext_resource type="Texture2D" uid="uid://dk7h036c1ypbf" path="res://Imagenes/menubackground.png" id="2_crvwb"]
+
+[node name="CanvasGameOverScreen" type="CanvasLayer" unique_id=905164044]
+process_mode = 2
+script = ExtResource("1_ias4a")
+
+[node name="GameOverScreen" type="Control" parent="." unique_id=970937137]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="GameOverScreen" unique_id=1081924827]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -365.0
+offset_top = -306.0
+offset_right = 383.0
+offset_bottom = 395.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("2_crvwb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverScreen" unique_id=1491009563]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverScreen" unique_id=592731194]
+root_node = NodePath("../..")
+
+[node name="OverLabel" type="Label" parent="GameOverScreen" unique_id=424614626]
+layout_mode = 0
+offset_left = -69.0
+offset_top = -230.0
+offset_right = 69.0
+offset_bottom = -207.0
+text = "The battle is over!"
+
+[node name="WinnerPortrait" type="TextureRect" parent="GameOverScreen" unique_id=2071244237]
+layout_mode = 0
+offset_left = -59.0
+offset_top = -206.0
+offset_right = 141.0
+offset_bottom = -99.0
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="GameOverScreen" unique_id=1210102875]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 18.0
+offset_bottom = -77.0
+text = "Name"
+
+[node name="WinnerLabel" type="Label" parent="GameOverScreen" unique_id=1036244740]
+visible = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = -100.0
+offset_right = 168.0
+offset_bottom = -77.0
+text = "won the battle!"
+
+[node name="RestartButton" type="Button" parent="GameOverScreen" unique_id=1109441785]
+process_mode = 2
+layout_mode = 0
+offset_left = -100.0
+offset_right = -35.0
+offset_bottom = 31.0
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="GameOverScreen" unique_id=1672615755]
+process_mode = 2
+layout_mode = 0
+offset_left = 50.0
+offset_right = 87.0
+offset_bottom = 31.0
+text = "Exit"
+
+[connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/ExitButton" to="." method="_on_exit_button_pressed"]

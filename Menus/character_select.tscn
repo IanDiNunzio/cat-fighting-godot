@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d2vnjjxqbh0w3" path="res://Imagenes/retrato4.png" id="6_4hbjg"]
 [ext_resource type="Texture2D" uid="uid://ghec2qte4k44" path="res://Imagenes/p3.png" id="6_v4cpe"]
 [ext_resource type="Texture2D" uid="uid://wobkschaijsx" path="res://Imagenes/p4.png" id="7_p42tr"]
+[ext_resource type="AudioStream" uid="uid://h4nnj28nvknj" path="res://SFX/707042__vilkas_sound__vs-button-click-05.mp3" id="11_vmvrc"]
 
 [node name="CharacterSelect" type="Control" unique_id=543849244]
 layout_mode = 3
@@ -285,8 +286,10 @@ text = "Ready"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=941897524]
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=294916160]
+stream = ExtResource("11_vmvrc")
 
 [node name="AnnouncerPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=367476601]
+stream = ExtResource("11_vmvrc")
 
 [node name="PlayerCountContainer" type="HBoxContainer" parent="." unique_id=805901732]
 layout_mode = 1

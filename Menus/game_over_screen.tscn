@@ -1,77 +1,99 @@
 [gd_scene format=3 uid="uid://bmu5ii8u14vmc"]
 
+[ext_resource type="Texture2D" uid="uid://bs1ohwhtngkf6" path="res://Imagenes/calleimagen.png" id="2_1lxip"]
+
 [node name="GameOverScreen" type="Control" unique_id=1815556530]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -586.0
+offset_top = -304.0
+offset_right = -586.0
+offset_bottom = -304.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=588143078]
-custom_minimum_size = Vector2(0, 500)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 350.0
-offset_right = -302.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=715559547]
 
-[node name="WinnerPotrait" type="TextureRect" parent="." unique_id=1715105620]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 474.0
-offset_top = 86.0
-offset_right = -409.0
-offset_bottom = -341.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GameOverScreen" type="Control" parent="CanvasLayer" unique_id=2112603968]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="OverLabel" type="Label" parent="." unique_id=1984177581]
+[node name="Background" type="TextureRect" parent="CanvasLayer/GameOverScreen" unique_id=1897740055]
 layout_mode = 0
-offset_left = 550.0
-offset_top = 50.0
-offset_right = 624.0
-offset_bottom = 73.0
+offset_left = -155.0
+offset_top = -304.0
+offset_right = 188.0
+offset_bottom = 108.0
+mouse_filter = 2
+texture = ExtResource("2_1lxip")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="WinnerPortrait" type="TextureRect" parent="CanvasLayer/GameOverScreen" unique_id=1715105620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -218.0
+offset_right = -152.0
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OverLabel" type="Label" parent="CanvasLayer/GameOverScreen" unique_id=1984177581]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -254.0
+offset_right = 102.0
+offset_bottom = -231.0
 text = "The battle is over!"
 
-[node name="NameLabel" type="Label" parent="." unique_id=945593183]
+[node name="NameLabel" type="Label" parent="CanvasLayer/GameOverScreen" unique_id=945593183]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 300.0
-offset_right = 574.0
-offset_bottom = 323.0
+offset_left = -86.0
+offset_top = -4.0
+offset_right = -12.0
+offset_bottom = 19.0
 text = "Name"
 
-[node name="WinnerLabel" type="Label" parent="." unique_id=1544278701]
+[node name="WinnerLabel" type="Label" parent="CanvasLayer/GameOverScreen" unique_id=1544278701]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 300.0
-offset_right = 674.0
-offset_bottom = 323.0
+offset_left = 14.0
+offset_top = -4.0
+offset_right = 132.0
+offset_bottom = 19.0
 text = "won the battle!"
 
-[node name="RestartButton" type="Button" parent="." unique_id=1703901399]
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverScreen" unique_id=1703901399]
+process_mode = 2
 layout_mode = 0
-offset_left = 450.0
-offset_top = 450.0
-offset_right = 550.0
-offset_bottom = 481.0
+offset_left = -136.0
+offset_top = 46.0
+offset_right = -36.0
+offset_bottom = 77.0
 text = "Restart"
 
-[node name="ExitButton" type="Button" parent="." unique_id=1231147301]
+[node name="ExitButton" type="Button" parent="CanvasLayer/GameOverScreen" unique_id=1231147301]
+process_mode = 2
 layout_mode = 0
-offset_left = 700.0
-offset_top = 450.0
-offset_right = 800.0
-offset_bottom = 481.0
+offset_left = 64.0
+offset_top = 46.0
+offset_right = 164.0
+offset_bottom = 77.0
 text = "Exit"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=308933150]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/GameOverScreen" unique_id=308933150]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1474569383]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GameOverScreen" unique_id=1474569383]
+root_node = NodePath("../../..")
+
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/ExitButton" to="." method="_on_exit_button_pressed"]

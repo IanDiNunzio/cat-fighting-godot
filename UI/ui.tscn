@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://dngef432ameqx"]
 
+[ext_resource type="Script" uid="uid://duxk1dl1k0ose" path="res://UI/ui.gd" id="1_2fwl4"]
+[ext_resource type="Texture2D" uid="uid://c08dps4yqpjdq" path="res://Imagenes/retrato3.png" id="2_e6gg6"]
+[ext_resource type="Texture2D" uid="uid://ci44ikqcv8qap" path="res://Imagenes/estambre.png" id="3_3sbvi"]
+[ext_resource type="Texture2D" uid="uid://b2pfydcsm7i4h" path="res://Imagenes/retratoblackcat.png" id="3_hat8c"]
+
 [node name="UI" type="CanvasLayer" unique_id=233709256]
+script = ExtResource("1_2fwl4")
 
 [node name="CharacterName" type="Label" parent="." unique_id=505050554]
 offset_right = 40.0
@@ -65,19 +71,46 @@ offset_bottom = 150.0
 layout_mode = 2
 
 [node name="CharacterIcon" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1286780537]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = 8.0
+offset_right = 55.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e6gg6")
+expand_mode = 1
 
 [node name="PlayerName" type="Label" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1680018024]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Catjohn"
 
-[node name="DamageLabel" type="Label" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1860427045]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HealthLabel" type="Label" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1860427045]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 25.0
+offset_right = 20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=572179895]
 layout_mode = 0
@@ -85,13 +118,22 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Stock1" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD/StockContainer" unique_id=1079507813]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+texture = ExtResource("3_3sbvi")
+expand_mode = 1
 
 [node name="Stock2" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD/StockContainer" unique_id=1367699819]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+texture = ExtResource("3_3sbvi")
+expand_mode = 1
 
 [node name="Stock3" type="TextureRect" parent="HUD/BottomUI/P1Anchor/P1_HUD/StockContainer" unique_id=1419609846]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+texture = ExtResource("3_3sbvi")
+expand_mode = 1
 
 [node name="P2Anchor" type="MarginContainer" parent="HUD/BottomUI" unique_id=1399838252]
 layout_mode = 0
@@ -103,19 +145,44 @@ offset_bottom = 150.0
 layout_mode = 2
 
 [node name="CharacterIcon" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=851525043]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hat8c")
+expand_mode = 1
 
 [node name="PlayerName" type="Label" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=1745668891]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Midnight"
 
-[node name="DamageLabel" type="Label" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=1733052051]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HealthLabel" type="Label" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=1733052051]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 25.0
+offset_right = 20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=170787289]
 layout_mode = 0
@@ -123,13 +190,22 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Stock1" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD/StockContainer" unique_id=995598979]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+texture = ExtResource("3_3sbvi")
+expand_mode = 1
 
 [node name="Stock2" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD/StockContainer" unique_id=91782583]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+texture = ExtResource("3_3sbvi")
+expand_mode = 1
 
 [node name="Stock3" type="TextureRect" parent="HUD/BottomUI/P2Anchor/P2_HUD/StockContainer" unique_id=1748131035]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+texture = ExtResource("3_3sbvi")
+expand_mode = 1
 
 [node name="P3Anchor" type="MarginContainer" parent="HUD/BottomUI" unique_id=485746294]
 layout_mode = 0

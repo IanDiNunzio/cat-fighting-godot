@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://deo3f6lny62mb"]
+
+[node name="ShoeSpawner" type="Node" unique_id=7944904]
+
+[node name="ShoeSpawner2D" type="Node2D" parent="." unique_id=284124242]

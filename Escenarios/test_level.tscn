@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://bkc7yylac5ai1"]
 
 [ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="1_gojnm"]
-[ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://orange_cat.tscn" id="1_tm4p5"]
+[ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="1_tm4p5"]
 [ext_resource type="Texture2D" uid="uid://dpbqe82h2q8ws" path="res://icon.svg" id="2_w1xm8"]
 [ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="4_w1xm8"]
+[ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="5_ters0"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Escenarios/shoe_spawner.gd" id="7_wwv3y"]
+[ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="8_3hn0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2mv"]
 
@@ -65,3 +68,15 @@ position = Vector2(100, -50)
 
 [node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=1816758185]
 position = Vector2(-100, -50)
+
+[node name="PauseMenu" parent="." unique_id=1902279463 instance=ExtResource("5_ters0")]
+
+[node name="ShoeSpawner" type="Node2D" parent="." unique_id=1482974485]
+script = ExtResource("7_wwv3y")
+shoe_scene = ExtResource("8_3hn0e")
+
+[node name="LeftSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=2038378593]
+position = Vector2(-500, -50)
+
+[node name="RightSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=994357191]
+position = Vector2(500, -50)

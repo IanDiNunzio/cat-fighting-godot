@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://c5iuoia5ax8yt"]
+
+[ext_resource type="Script" uid="uid://cnnriwr1mlflq" path="res://Menus/character_select_simple.gd" id="1_e37fr"]
+[ext_resource type="Texture2D" uid="uid://c08dps4yqpjdq" path="res://Imagenes/retrato3.png" id="1_uf17w"]
+[ext_resource type="Texture2D" uid="uid://b2pfydcsm7i4h" path="res://Imagenes/retratoblackcat.png" id="3_e37fr"]
+
+[node name="CharacterSelectSimple" type="CanvasLayer" unique_id=963062299]
+script = ExtResource("1_e37fr")
+
+[node name="Background" type="TextureRect" parent="." unique_id=463988964]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=1992394617]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control" unique_id=1481367882]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.5
+offset_right = 118.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Choose the amount of players!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1543874127]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -273.0
+offset_right = 249.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P1Potrait" type="TextureRect" parent="Control/HBoxContainer" unique_id=1360506974]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture = ExtResource("1_uf17w")
+expand_mode = 1
+
+[node name="P2Potrait" type="TextureRect" parent="Control/HBoxContainer" unique_id=1144531672]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture = ExtResource("3_e37fr")
+expand_mode = 1
+
+[node name="P3Potrait" type="TextureRect" parent="Control/HBoxContainer" unique_id=10355328]
+layout_mode = 2
+
+[node name="P4Potrait" type="TextureRect" parent="Control/HBoxContainer" unique_id=1327149448]
+layout_mode = 2
+
+[node name="LocalOnline" type="VBoxContainer" parent="Control" unique_id=149940928]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -60.0
+offset_right = 44.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LocalLabel" type="Label" parent="Control/LocalOnline" unique_id=669102824]
+layout_mode = 2
+text = "Local"
+horizontal_alignment = 1
+
+[node name="LocalBox" type="HBoxContainer" parent="Control/LocalOnline" unique_id=1858791228]
+layout_mode = 2
+
+[node name="2PButton" type="Button" parent="Control/LocalOnline/LocalBox" unique_id=1746847778]
+layout_mode = 2
+text = "2P"
+
+[node name="3PButton" type="Button" parent="Control/LocalOnline/LocalBox" unique_id=941503815]
+layout_mode = 2
+text = "3P"
+
+[node name="4PButton" type="Button" parent="Control/LocalOnline/LocalBox" unique_id=531789155]
+layout_mode = 2
+text = "4P"
+
+[node name="OnlineLabel" type="Label" parent="Control/LocalOnline" unique_id=2011291351]
+layout_mode = 2
+text = "Online"
+horizontal_alignment = 1
+
+[node name="OnlineBox" type="HBoxContainer" parent="Control/LocalOnline" unique_id=403520844]
+layout_mode = 2
+
+[node name="2PButton" type="Button" parent="Control/LocalOnline/OnlineBox" unique_id=618470705]
+layout_mode = 2
+text = "2P"
+
+[node name="3PButton" type="Button" parent="Control/LocalOnline/OnlineBox" unique_id=1129785927]
+layout_mode = 2
+text = "3P"
+
+[node name="4PButton" type="Button" parent="Control/LocalOnline/OnlineBox" unique_id=265724954]
+layout_mode = 2
+text = "4P"
+
+[node name="ReturnButton" type="Button" parent="Control" unique_id=643401485]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 500.0
+offset_right = 562.0
+offset_bottom = 531.0
+text = "Return"
+
+[node name="ReadyButton" type="Button" parent="Control" unique_id=791393772]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 500.0
+offset_right = 756.0
+offset_bottom = 531.0
+text = "Ready"
+
+[connection signal="pressed" from="Control/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Control/ReadyButton" to="." method="_on_ready_button_pressed"]

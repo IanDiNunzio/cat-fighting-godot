@@ -97,6 +97,7 @@ animations = [{
 
 [node name="BlackCat" type="CharacterBody2D" unique_id=129876696]
 script = ExtResource("1_x46l8")
+max_stocks = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141691243]
 position = Vector2(-0.99999994, -3.9999998)

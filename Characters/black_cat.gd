@@ -6,6 +6,13 @@ extends CharacterBody2D
 @export var player_id := 2
 
 # =========================
+# DATOS PERSONAJE
+# =========================
+@export var character_name := "Player 2"
+
+@export var portrait : Texture2D
+
+# =========================
 # MOVIMIENTO
 # =========================
 @export var speed := 250.0
@@ -23,7 +30,7 @@ var dead := false
 # =========================
 # STOCKS / VIDAS
 # =========================
-@export var max_stocks := 3
+@export var max_stocks := 1
 
 var stocks := max_stocks
 
@@ -53,9 +60,34 @@ var facing_direction := 1
 @onready var heavy_hitbox = $Hitboxes/HeavyAttack
 
 # =========================
+# UI
+# =========================
+@onready var health_label = get_tree().current_scene.get_node(
+	"UI/HUD/BottomUI/P2Anchor/P2_HUD/HealthLabel"
+)
+
+# =========================
+# STOCK UI
+# =========================
+@onready var stock1 = get_tree().current_scene.get_node(
+	"UI/HUD/BottomUI/P2Anchor/P2_HUD/StockContainer/Stock1"
+)
+
+@onready var stock2 = get_tree().current_scene.get_node(
+	"UI/HUD/BottomUI/P2Anchor/P2_HUD/StockContainer/Stock2"
+)
+
+@onready var stock3 = get_tree().current_scene.get_node(
+	"UI/HUD/BottomUI/P2Anchor/P2_HUD/StockContainer/Stock3"
+)
+
+# =========================
 # READY
 # =========================
 func _ready():
+
+	# Registrar jugador
+	GameManager.register_player(self)
 
 	# Texto P2
 	player_number.text = "P" + str(player_id)
@@ -92,6 +124,10 @@ func _ready():
 	light_hitbox.body_entered.connect(_on_light_attack_hit)
 	heavy_hitbox.body_entered.connect(_on_heavy_attack_hit)
 
+	# Actualizar UI
+	update_health_ui()
+	update_stock_ui()
+
 # =========================
 # PHYSICS
 # =========================
@@ -127,11 +163,17 @@ func _physics_process(delta):
 		# Girar hitboxes
 		$Hitboxes.scale.x = direction
 
-	# Mover solo si no ataca
+	# =========================
+	# MOVIMIENTO EN EL AIRE
+	# =========================
 	if !attacking:
+
 		velocity.x = direction * speed
+
 	else:
-		velocity.x = 0
+
+		if is_on_floor():
+			velocity.x = 0
 
 	# Ataque ligero
 	if Input.is_action_just_pressed("lightattackp2") and !attacking:
@@ -241,7 +283,14 @@ func take_damage(amount):
 
 	hp -= amount
 
+	# Evita negativos
+	if hp < 0:
+		hp = 0
+
 	print(name, " recibió daño. HP: ", hp)
+
+	# Actualizar UI
+	update_health_ui()
 
 	can_take_damage = false
 
@@ -252,6 +301,28 @@ func take_damage(amount):
 	# Morir
 	if hp <= 0:
 		die()
+
+# =========================
+# UI VIDA
+# =========================
+func update_health_ui():
+
+	if health_label:
+		health_label.text = str(hp) + " HP"
+
+# =========================
+# UI STOCKS
+# =========================
+func update_stock_ui():
+
+	if stock1:
+		stock1.visible = stocks >= 1
+
+	if stock2:
+		stock2.visible = stocks >= 2
+
+	if stock3:
+		stock3.visible = stocks >= 3
 
 # =========================
 # MORIR
@@ -267,13 +338,21 @@ func die():
 
 	stocks -= 1
 
+	# Actualizar UI stocks
+	update_stock_ui()
+
 	print(name, " perdió una vida")
 	print("Stocks restantes: ", stocks)
 
-	# Sin vidas
+	# =========================
+	# ELIMINADO
+	# =========================
 	if stocks <= 0:
 
 		print(name, " fue eliminado")
+
+		# Revisar ganador
+		GameManager.check_winner()
 
 		queue_free()
 
@@ -292,6 +371,9 @@ func respawn():
 	global_position = respawn_position
 
 	hp = max_hp
+
+	# Actualizar UI
+	update_health_ui()
 
 	velocity = Vector2.ZERO
 

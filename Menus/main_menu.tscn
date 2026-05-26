@@ -25,23 +25,24 @@ offset_right = 4.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=700084212]
+[node name="FightButton" type="Button" parent="Panel/VBoxContainer" unique_id=700084212]
 layout_mode = 2
 text = "Fight!"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer" unique_id=794814766]
+[node name="TrainingModeButton" type="Button" parent="Panel/VBoxContainer" unique_id=794814766]
 layout_mode = 2
 text = "Training Mode"
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer" unique_id=783544515]
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer" unique_id=783544515]
 layout_mode = 2
 text = "Options"
 
-[node name="Button4" type="Button" parent="Panel/VBoxContainer" unique_id=287108037]
+[node name="CreditsButton" type="Button" parent="Panel/VBoxContainer" unique_id=287108037]
 layout_mode = 2
 text = "Credits"
 
-[node name="Button5" type="Button" parent="Panel/VBoxContainer" unique_id=376960100]
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer" unique_id=376960100]
 layout_mode = 2
 text = "Exit"
