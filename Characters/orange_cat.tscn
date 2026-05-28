@@ -21,13 +21,13 @@ region = Rect2(410, 400, 180, 200)
 atlas = ExtResource("2_ct35f")
 region = Rect2(440, 175, 220, 175)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wc1h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mln24"]
 atlas = ExtResource("3_pkrlc")
-region = Rect2(1152, 341, 192, 341)
+region = Rect2(384, 380, 192, 190)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pp6o1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1cdu"]
 atlas = ExtResource("3_pkrlc")
-region = Rect2(576, 341, 192, 341)
+region = Rect2(1344, 380, 192, 190)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ar2ro"]
 animations = [{
@@ -64,11 +64,11 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_5wc1h")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mln24")
 }, {
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_pp6o1")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1cdu")
 }],
 "loop": true,
 "name": &"Walking",
@@ -84,15 +84,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wde3"]
 size = Vector2(30, 20)
 
-[node name="OrangeCat" type="CharacterBody2D" unique_id=2016829878]
+[node name="OrangeCat" type="CharacterBody2D" unique_id=2016829878 groups=["players"]]
 script = ExtResource("1_kodo7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=109672442]
 position = Vector2(-3, -4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_ar2ro")
-animation = &"Jump"
-frame_progress = 0.39099115
+animation = &"Walking"
+frame_progress = 0.47559923
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1908407707]
 shape = SubResource("CapsuleShape2D_y2b2p")

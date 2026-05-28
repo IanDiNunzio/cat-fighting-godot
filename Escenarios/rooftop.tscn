@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://3nt662xkwndg"]
+
+[ext_resource type="Texture2D" uid="uid://dy1j1wtvl7h53" path="res://Imagenes/RoofTop.png" id="1_a2tvx"]
+[ext_resource type="Script" uid="uid://c7ay1i6hw1grv" path="res://Scripts/Hazard_plataforma.gd" id="2_2nm55"]
+[ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="2_jxu3m"]
+[ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="3_2nm55"]
+[ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="4_lwfkr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44bi0"]
+size = Vector2(333, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwfkr"]
+size = Vector2(333, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8akg"]
+size = Vector2(236.125, 17.78125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxomw"]
+size = Vector2(344, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd6es"]
+size = Vector2(1475, 84)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a2tvx"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(900, 5, 1)
+gravity = Vector3(0, 98, 0)
+
+[node name="Rooftop" type="Node2D" unique_id=2001946851]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1681352819]
+position = Vector2(957.79, 535.95996)
+texture = ExtResource("1_a2tvx")
+
+[node name="plataforma colgante" type="StaticBody2D" parent="." unique_id=1176759849]
+position = Vector2(964, 364)
+script = ExtResource("2_2nm55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma colgante" unique_id=2094523543]
+position = Vector2(-4.5, 0)
+shape = SubResource("RectangleShape2D_44bi0")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="plataforma colgante" unique_id=1593463860]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma colgante/Area2D" unique_id=1076818371]
+position = Vector2(-7, 1)
+shape = SubResource("RectangleShape2D_lwfkr")
+
+[node name="Timer" type="Timer" parent="plataforma colgante" unique_id=693607742]
+
+[node name="ColorRect" type="ColorRect" parent="plataforma colgante" unique_id=977477057]
+offset_left = -173.0
+offset_top = -9.0
+offset_right = 164.0
+offset_bottom = 9.0
+color = Color(0.5882353, 1, 1, 0.5176471)
+
+[node name="Tanque" type="StaticBody2D" parent="." unique_id=1444214894]
+position = Vector2(575, 525)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tanque" unique_id=178858793]
+position = Vector2(16, 8)
+shape = SubResource("RectangleShape2D_y8akg")
+one_way_collision = true
+
+[node name="casilla" type="StaticBody2D" parent="." unique_id=759673160]
+position = Vector2(1341, 484)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="casilla" unique_id=150635366]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_hxomw")
+one_way_collision = true
+
+[node name="FLOOR" type="StaticBody2D" parent="." unique_id=1622130483]
+position = Vector2(873, 711)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FLOOR" unique_id=1862560824]
+position = Vector2(75, 16)
+shape = SubResource("RectangleShape2D_hd6es")
+
+[node name="BlackCat" parent="." unique_id=129876696 instance=ExtResource("2_jxu3m")]
+position = Vector2(724, 223)
+scale = Vector2(2, 2)
+jump_force = -600.0
+
+[node name="OrangeCat" parent="." unique_id=2016829878 instance=ExtResource("3_2nm55")]
+position = Vector2(645, 223)
+scale = Vector2(2, 2)
+jump_force = -600.0
+
+[node name="UI" parent="." unique_id=233709256 instance=ExtResource("4_lwfkr")]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1859583985]
+
+[node name="SpawnP1" type="Marker2D" parent="SpawnPoints" unique_id=1097773483]
+position = Vector2(1033, 331)
+
+[node name="SpawnP2" type="Marker2D" parent="SpawnPoints" unique_id=1469452099]
+position = Vector2(546, 492)
+
+[node name="SpawnP3" type="Marker2D" parent="SpawnPoints" unique_id=2080072793]
+position = Vector2(358, 660)
+
+[node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=2014809993]
+position = Vector2(1392, 450)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=983128481]
+position = Vector2(956, -3)
+amount = 300
+amount_ratio = 0.8
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_a2tvx")
+
+[connection signal="body_entered" from="plataforma colgante/Area2D" to="plataforma colgante" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="plataforma colgante/Timer" to="plataforma colgante" method="_on_timer_timeout"]

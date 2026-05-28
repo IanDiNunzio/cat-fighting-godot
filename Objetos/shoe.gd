@@ -6,6 +6,10 @@ extends RigidBody2D
 # Tiempo quieto antes de desaparecer
 @export var idle_time := 3.0
 
+# Knockback extra del zapato
+@export var knockback_force := 700.0
+@export var knockback_vertical := -250.0
+
 var still_timer := 0.0
 
 func _ready():
@@ -59,6 +63,25 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 
+	# Evita golpearse a sí mismo
+	if body == self:
+		return
+
 	if body.has_method("take_damage"):
 
-		body.take_damage(damage)
+		# Dirección del knockback
+		var direction := 1
+
+		if linear_velocity.x < 0:
+			direction = -1
+
+		body.take_damage(damage, direction)
+
+		# Empuje extra opcional
+		if body is CharacterBody2D:
+
+			body.velocity.x = direction * knockback_force
+			body.velocity.y = knockback_vertical
+
+		# Destruye el zapato al golpear
+		queue_free()

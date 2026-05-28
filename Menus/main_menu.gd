@@ -1,16 +1,41 @@
 extends CanvasLayer
 
-func _ready():
-	$Panel/VBoxContainer/Continue.disabled = Global.current_level_path == ""
+# =========================
+# READY
+# =========================
 
-func _on_Continue_pressed():
-	SceneManager.fade_to_scene(Global.current_level_path)
 
-func _on_NewGame_pressed():
-	SceneManager.fade_to_scene("res://scenes/LevelBase.tscn")
+# =========================
+# FIGHT
+# =========================
+func _on_fight_button_pressed() -> void:
 
-func _on_Options_pressed():
-	SceneManager.fade_to_scene("res://core/ui/options_menu.tscn")
+	get_tree().change_scene_to_file("res://Menus/level_selector.tscn")
 
-func _on_Quit_pressed():
+# =========================
+# TRAINING MODE
+# =========================
+func _on_training_mode_button_pressed() -> void:
+
+	get_tree().change_scene_to_file("res://Escenarios/test_level.tscn")
+
+# =========================
+# OPTIONS
+# =========================
+func _on_options_button_pressed() -> void:
+
+	get_tree().change_scene_to_file("res://Scenes/Options.tscn")
+
+# =========================
+# CREDITS
+# =========================
+func _on_credits_button_pressed() -> void:
+
+	get_tree().change_scene_to_file("res://Scenes/Credits.tscn")
+
+# =========================
+# EXIT
+# =========================
+func _on_exit_button_pressed() -> void:
+
 	get_tree().quit()

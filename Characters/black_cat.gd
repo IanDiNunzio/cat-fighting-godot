@@ -20,6 +20,13 @@ extends CharacterBody2D
 @export var gravity := 1200.0
 
 # =========================
+# DOBLE SALTO
+# =========================
+@export var max_jumps := 2
+
+var jumps_left := max_jumps
+
+# =========================
 # VIDA
 # =========================
 @export var max_hp := 100
@@ -42,8 +49,23 @@ var stocks := max_stocks
 @export var light_damage := 10
 @export var heavy_damage := 25
 
+# =========================
+# KNOCKBACK
+# =========================
+@export var base_knockback := 350.0
+@export var max_knockback := 1200.0
+@export var knockback_vertical := -450.0
+
+# 🔥 AÑADIDO: igualar sistema con Player 1 (si usa ángulo)
+@export var knockback_angle_y := -0.75
+
 var attacking := false
 var can_take_damage := true
+
+# =========================
+# STUN
+# =========================
+var stunned := false
 
 # Dirección
 var facing_direction := 1
@@ -136,13 +158,22 @@ func _physics_process(delta):
 	if dead:
 		return
 
-	# Gravedad
+	# =========================
+	# GRAVEDAD
+	# =========================
 	if !is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		jumps_left = max_jumps
 
-	# Salto
-	if Input.is_action_just_pressed("jumpp2") and is_on_floor():
+	# =========================
+	# DOBLE SALTO
+	# =========================
+	if Input.is_action_just_pressed("jumpp2") and jumps_left > 0:
+
 		velocity.y = jump_force
+
+		jumps_left -= 1
 
 	# Movimiento
 	var direction := 0
@@ -160,20 +191,23 @@ func _physics_process(delta):
 
 		sprite.flip_h = direction < 0
 
-		# Girar hitboxes
 		$Hitboxes.scale.x = direction
 
+	# 🔥 AÑADIDO: mantener dirección hitboxes cuando no se mueve
+	if direction == 0:
+		$Hitboxes.scale.x = facing_direction
+
 	# =========================
-	# MOVIMIENTO EN EL AIRE
+	# MOVIMIENTO
 	# =========================
-	if !attacking:
+	if !attacking and !stunned:
 
 		velocity.x = direction * speed
 
 	else:
 
 		if is_on_floor():
-			velocity.x = 0
+			velocity.x = move_toward(velocity.x, 0, 30)
 
 	# Ataque ligero
 	if Input.is_action_just_pressed("lightattackp2") and !attacking:
@@ -262,7 +296,7 @@ func _on_light_attack_hit(body):
 
 	if body.has_method("take_damage"):
 
-		body.take_damage(light_damage)
+		body.take_damage(light_damage, facing_direction)
 
 func _on_heavy_attack_hit(body):
 
@@ -271,34 +305,60 @@ func _on_heavy_attack_hit(body):
 
 	if body.has_method("take_damage"):
 
-		body.take_damage(heavy_damage)
+		body.take_damage(heavy_damage, facing_direction)
 
 # =========================
 # RECIBIR DAÑO
 # =========================
-func take_damage(amount):
+func take_damage(amount, attack_direction):
 
 	if !can_take_damage:
 		return
 
 	hp -= amount
 
-	# Evita negativos
 	if hp < 0:
 		hp = 0
 
 	print(name, " recibió daño. HP: ", hp)
 
-	# Actualizar UI
+	# =========================
+	# KNOCKBACK UNIFICADO (IGUAL P1 Y P2)
+	# =========================
+
+	var missing_hp = max_hp - hp
+
+	var knockback_strength = lerp(
+		base_knockback,
+		max_knockback,
+		float(missing_hp) / float(max_hp)
+	)
+
+	var dir = sign(attack_direction)
+	if dir == 0:
+		dir = facing_direction
+
+	# 🔥 UN SOLO SISTEMA (sin doble velocity)
+	var knock_dir = Vector2(dir, knockback_angle_y).normalized()
+	velocity = knock_dir * knockback_strength
+
+	# =========================
+	# STUN
+	# =========================
+	stunned = true
+
 	update_health_ui()
 
 	can_take_damage = false
 
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.25).timeout
+
+	stunned = false
+
+	await get_tree().create_timer(0.15).timeout
 
 	can_take_damage = true
 
-	# Morir
 	if hp <= 0:
 		die()
 
@@ -338,27 +398,21 @@ func die():
 
 	stocks -= 1
 
-	# Actualizar UI stocks
 	update_stock_ui()
 
 	print(name, " perdió una vida")
 	print("Stocks restantes: ", stocks)
 
-	# =========================
-	# ELIMINADO
-	# =========================
 	if stocks <= 0:
 
 		print(name, " fue eliminado")
 
-		# Revisar ganador
 		GameManager.check_winner()
 
 		queue_free()
 
 		return
 
-	# Espera antes de respawn
 	await get_tree().create_timer(1.0).timeout
 
 	respawn()
@@ -372,16 +426,18 @@ func respawn():
 
 	hp = max_hp
 
-	# Actualizar UI
+	jumps_left = max_jumps
+
 	update_health_ui()
 
 	velocity = Vector2.ZERO
 
 	dead = false
+	stunned = false
+	attacking = false  # 🔥 AÑADIDO (igual que P1)
 
 	can_take_damage = false
 
-	# Invulnerabilidad temporal
 	await get_tree().create_timer(2.0).timeout
 
 	can_take_damage = true

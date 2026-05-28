@@ -1,10 +1,55 @@
 [gd_scene format=3 uid="uid://deesx4ygfdthk"]
 
 [ext_resource type="Texture2D" uid="uid://c67ft3vf1be3" path="res://Imagenes/azoteaimagen.png" id="1_2db0o"]
+[ext_resource type="Script" uid="uid://dodido1r2spbs" path="res://Menus/level_selector.gd" id="1_5oq85"]
+[ext_resource type="Texture2D" uid="uid://dy1j1wtvl7h53" path="res://Imagenes/RoofTop.png" id="1_i4jpr"]
 [ext_resource type="Texture2D" uid="uid://bs1ohwhtngkf6" path="res://Imagenes/calleimagen.png" id="2_sn3u0"]
+[ext_resource type="Texture2D" uid="uid://c6jf70mttg3h7" path="res://Imagenes/backgroundart1.png" id="2_xgx1w"]
 [ext_resource type="Texture2D" uid="uid://d2syc6r85ekom" path="res://Imagenes/parqueimagen.png" id="3_3o3bh"]
 
 [node name="LevelSelector" type="CanvasLayer" unique_id=925782640]
+script = ExtResource("1_5oq85")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=118500986]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xgx1w")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2039553191]
+offset_left = 51.0
+offset_top = 50.0
+offset_right = 551.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1089647146]
+offset_left = 600.0
+offset_top = 50.0
+offset_right = 1100.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ReturnButton" type="Button" parent="." unique_id=1959138099]
+offset_left = 185.0
+offset_top = 610.0
+offset_right = 247.0
+offset_bottom = 641.0
+size_flags_horizontal = 4
+text = "Return"
+
+[node name="ReadyButton" type="Button" parent="." unique_id=966603306]
+offset_left = 719.0
+offset_top = 592.0
+offset_right = 781.0
+offset_bottom = 623.0
+size_flags_horizontal = 4
+text = "Ready"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1140954609]
 anchors_preset = 8
@@ -12,12 +57,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -502.0
-offset_top = -246.5
-offset_right = 502.0
-offset_bottom = 246.5
+offset_left = -511.0
+offset_top = -244.0
+offset_right = 539.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.45, 0.45)
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=694080007]
 layout_mode = 2
@@ -30,7 +76,7 @@ layout_mode = 2
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer" unique_id=583616162]
 custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
-texture_normal = ExtResource("1_2db0o")
+texture_normal = ExtResource("1_i4jpr")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -84,7 +130,129 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Beach"
 
-[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=1959138099]
+[node name="RightPanel" type="Panel" parent="." unique_id=29368996]
+offset_left = 600.0
+offset_top = 75.0
+offset_right = 1100.0
+offset_bottom = 525.0
+
+[node name="PreviewTexture" type="TextureRect" parent="RightPanel" unique_id=2123930737]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="MapLabel" type="Label" parent="RightPanel" unique_id=1134632120]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayersPanel" type="Panel" parent="." unique_id=102274438]
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 550.0
+offset_bottom = 534.0
+
+[node name="LocalLabel" type="Label" parent="PlayersPanel" unique_id=1822306933]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.5
+offset_top = 10.0
+offset_right = 20.5
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "Local"
+
+[node name="OnlineLabel" type="Label" parent="PlayersPanel" unique_id=1694979838]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = 25.0
+offset_right = 26.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Online"
+
+[node name="LocalHBox" type="HBoxContainer" parent="PlayersPanel" unique_id=468266080]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -35.0
+offset_right = 123.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="2P" type="Button" parent="PlayersPanel/LocalHBox" unique_id=1504231754]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Return"
+text = "2 Players "
+
+[node name="3P" type="Button" parent="PlayersPanel/LocalHBox" unique_id=1377544005]
+layout_mode = 2
+text = "3 Players"
+
+[node name="4P" type="Button" parent="PlayersPanel/LocalHBox" unique_id=580115877]
+layout_mode = 2
+text = "4 Players"
+
+[node name="OnlineHBox" type="HBoxContainer" parent="PlayersPanel" unique_id=2137984534]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = 55.0
+offset_right = 121.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="2P" type="Button" parent="PlayersPanel/OnlineHBox" unique_id=1884316147]
+layout_mode = 2
+text = "2 Players"
+
+[node name="3P" type="Button" parent="PlayersPanel/OnlineHBox" unique_id=1648035784]
+layout_mode = 2
+text = "3 Players"
+
+[node name="4P" type="Button" parent="PlayersPanel/OnlineHBox" unique_id=1180724650]
+layout_mode = 2
+text = "4 Players"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/VBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/VBoxContainer3/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/VBoxContainer4/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="PlayersPanel/LocalHBox/2P" to="." method="_on_p_pressed"]
+[connection signal="pressed" from="PlayersPanel/LocalHBox/3P" to="." method="_on_p_pressed"]
+[connection signal="pressed" from="PlayersPanel/LocalHBox/4P" to="." method="_on_p_pressed"]
+[connection signal="pressed" from="PlayersPanel/OnlineHBox/2P" to="." method="_on_p_pressed"]
+[connection signal="pressed" from="PlayersPanel/OnlineHBox/3P" to="." method="_on_p_pressed"]
+[connection signal="pressed" from="PlayersPanel/OnlineHBox/4P" to="." method="_on_p_pressed"]

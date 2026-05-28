@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cat Fighting Godot"
-run/main_scene="uid://c5iuoia5ax8yt"
+run/main_scene="uid://deesx4ygfdthk"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

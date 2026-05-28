@@ -20,6 +20,13 @@ extends CharacterBody2D
 @export var gravity := 1200.0
 
 # =========================
+# DOBLE SALTO
+# =========================
+@export var max_jumps := 2
+
+var jumps_left := max_jumps
+
+# =========================
 # VIDA Y STOCKS
 # =========================
 @export var max_hp := 100
@@ -27,6 +34,16 @@ extends CharacterBody2D
 
 var hp := max_hp
 var stocks := max_stocks
+
+# =========================
+# KNOCKBACK
+# =========================
+@export var base_knockback := 350.0
+@export var max_knockback := 1200.0
+@export var knockback_vertical := -450.0
+
+# 🔥 NUEVO (solo añadido, NO rompe nada)
+@export var knockback_angle_y := -0.75
 
 # =========================
 # RESPAWN
@@ -42,6 +59,11 @@ var stocks := max_stocks
 var attacking := false
 var can_take_damage := true
 var dead := false
+
+# =========================
+# STUN
+# =========================
+var stunned := false
 
 # Dirección
 var facing_direction := 1
@@ -91,16 +113,12 @@ func _ready():
 
 	# Color del texto
 	match player_id:
-
 		1:
 			player_number.modulate = Color.RED
-
 		2:
 			player_number.modulate = Color.BLUE
-
 		3:
 			player_number.modulate = Color.YELLOW
-
 		4:
 			player_number.modulate = Color.GREEN
 
@@ -138,12 +156,16 @@ func _physics_process(delta):
 	# =========================
 	if !is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		jumps_left = max_jumps
 
 	# =========================
-	# SALTO
+	# DOBLE SALTO
 	# =========================
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and jumps_left > 0:
+
 		velocity.y = jump_force
+		jumps_left -= 1
 
 	# =========================
 	# MOVIMIENTO
@@ -158,24 +180,18 @@ func _physics_process(delta):
 
 	# Girar personaje
 	if direction != 0:
-
 		facing_direction = direction
-
 		anim.flip_h = direction < 0
-
 		$Hitboxes.scale.x = direction
 
 	# =========================
-	# MOVIMIENTO EN EL AIRE
+	# MOVIMIENTO
 	# =========================
-	if !attacking:
-
+	if !attacking and !stunned:
 		velocity.x = direction * speed
-
 	else:
-
 		if is_on_floor():
-			velocity.x = 0
+			velocity.x = move_toward(velocity.x, 0, 30)
 
 	move_and_slide()
 
@@ -208,15 +224,12 @@ func update_animations(direction):
 		return
 
 	if !is_on_floor():
-
 		anim.play("Jump")
 
 	elif direction != 0:
-
 		anim.play("Walking")
 
 	else:
-
 		anim.play("Idle")
 
 # =========================
@@ -266,8 +279,7 @@ func _on_light_attack_hit(body):
 		return
 
 	if body.has_method("take_damage"):
-
-		body.take_damage(light_damage)
+		body.take_damage(light_damage, facing_direction)
 
 func _on_heavy_attack_hit(body):
 
@@ -275,31 +287,58 @@ func _on_heavy_attack_hit(body):
 		return
 
 	if body.has_method("take_damage"):
-
-		body.take_damage(heavy_damage)
+		body.take_damage(heavy_damage, facing_direction)
 
 # =========================
-# RECIBIR DAÑO
+# RECIBIR DAÑO (🔥 AQUÍ ESTÁ EL CAMBIO)
 # =========================
-func take_damage(amount):
+func take_damage(amount, attack_direction):
 
 	if !can_take_damage:
 		return
 
 	hp -= amount
 
-	# Evita negativos
 	if hp < 0:
 		hp = 0
 
 	print(name, " HP: ", hp)
 
-	# Actualizar UI
+	# =========================
+	# KNOCKBACK 45° REAL
+	# =========================
+
+	var missing_hp = max_hp - hp
+
+	var knockback_strength = lerp(
+		base_knockback,
+		max_knockback,
+		float(missing_hp) / float(max_hp)
+	)
+
+	var dir = sign(attack_direction)
+	if dir == 0:
+		dir = facing_direction
+
+	# 🔥 45° real (esto es lo que faltaba)
+	var knock_dir = Vector2(dir, knockback_angle_y).normalized()
+
+	velocity = knock_dir * knockback_strength
+
+	# =========================
+	# STUN
+	# =========================
+	stunned = true
+
 	update_health_ui()
 
 	can_take_damage = false
 
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.25).timeout
+
+	stunned = false
+
+	await get_tree().create_timer(0.15).timeout
 
 	can_take_damage = true
 
@@ -343,29 +382,20 @@ func die():
 
 	stocks -= 1
 
-	# Actualizar UI stocks
 	update_stock_ui()
 
 	print(name, " perdió una vida")
 	print("Stocks restantes: ", stocks)
 
-	# =========================
-	# ELIMINADO
-	# =========================
 	if stocks <= 0:
 
 		print(name, " fue eliminado")
 
-		# Revisar ganador
 		GameManager.check_winner()
-
 		queue_free()
-
 		return
 
-	# Espera antes de respawn
 	await get_tree().create_timer(1.0).timeout
-
 	respawn()
 
 # =========================
@@ -377,16 +407,17 @@ func respawn():
 
 	hp = max_hp
 
-	# Actualizar UI
+	jumps_left = max_jumps
+
 	update_health_ui()
 
 	velocity = Vector2.ZERO
 
 	dead = false
+	stunned = false
 
 	can_take_damage = false
 
-	# Invulnerabilidad temporal
 	await get_tree().create_timer(2.0).timeout
 
 	can_take_damage = true
