@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://chnnxo1o7okwo" path="res://Imagenes/sh1attack.png" id="2_q1l2b"]
 [ext_resource type="Texture2D" uid="uid://dpcm0wh88uvx0" path="res://Imagenes/sh1jumpinghurt.png" id="3_wlte2"]
 [ext_resource type="Texture2D" uid="uid://8rlnx5r2ct5p" path="res://Imagenes/sh1walking.png" id="4_wlte2"]
+[ext_resource type="AudioStream" uid="uid://dfe6p2qefq4r2" path="res://SFX/125426__jspath1__punch.wav" id="5_q7i8r"]
+[ext_resource type="AudioStream" uid="uid://nhahdkl0m7cc" path="res://SFX/493916__damnsatinist__intense-punch.wav" id="6_msjb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5g2q"]
 atlas = ExtResource("2_q1l2b")
@@ -97,7 +99,6 @@ animations = [{
 
 [node name="BlackCat" type="CharacterBody2D" unique_id=129876696]
 script = ExtResource("1_x46l8")
-max_stocks = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141691243]
 position = Vector2(-0.99999994, -3.9999998)
@@ -135,6 +136,12 @@ shape = SubResource("RectangleShape2D_fpf1d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/HeavyAttack" unique_id=882495220]
 scale = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_h8i6a")
+
+[node name="AudioHitLight" type="AudioStreamPlayer" parent="." unique_id=1549081852]
+stream = ExtResource("5_q7i8r")
+
+[node name="AudioHitHeavy" type="AudioStreamPlayer" parent="." unique_id=783681144]
+stream = ExtResource("6_msjb4")
 
 [connection signal="body_entered" from="Hitboxes/LightAttack" to="." method="_on_light_attack_body_entered"]
 [connection signal="body_entered" from="Hitboxes/HeavyAttack" to="." method="_on_heavy_attack_body_entered"]

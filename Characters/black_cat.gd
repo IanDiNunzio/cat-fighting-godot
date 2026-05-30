@@ -81,6 +81,12 @@ var facing_direction := 1
 @onready var light_hitbox = $Hitboxes/LightAttack
 @onready var heavy_hitbox = $Hitboxes/HeavyAttack
 
+@onready var hit_light_sfx = $AudioHitLight
+@onready var hit_heavy_sfx = $AudioHitHeavy
+
+@onready var audio_hit_light = $AudioHitLight
+@onready var audio_hit_heavy = $AudioHitHeavy
+
 # =========================
 # UI
 # =========================
@@ -150,6 +156,10 @@ func _ready():
 	update_health_ui()
 	update_stock_ui()
 
+# Audio SFX
+	audio_hit_light.bus = "SFX"
+	audio_hit_heavy.bus = "SFX"
+	
 # =========================
 # PHYSICS
 # =========================
@@ -296,6 +306,9 @@ func _on_light_attack_hit(body):
 
 	if body.has_method("take_damage"):
 
+		if hit_light_sfx and MusicManager.sfx_volume > 0:
+			hit_light_sfx.play()
+
 		body.take_damage(light_damage, facing_direction)
 
 func _on_heavy_attack_hit(body):
@@ -304,6 +317,9 @@ func _on_heavy_attack_hit(body):
 		return
 
 	if body.has_method("take_damage"):
+
+		if hit_heavy_sfx and MusicManager.sfx_volume > 0:
+			hit_heavy_sfx.play()
 
 		body.take_damage(heavy_damage, facing_direction)
 

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://3nt662xkwndg"]
 
+[ext_resource type="Script" uid="uid://74alvyv16vt2" path="res://Escenarios/rooftop.gd" id="1_2nm55"]
 [ext_resource type="Texture2D" uid="uid://dy1j1wtvl7h53" path="res://Imagenes/RoofTop.png" id="1_a2tvx"]
 [ext_resource type="Script" uid="uid://c7ay1i6hw1grv" path="res://Scripts/Hazard_plataforma.gd" id="2_2nm55"]
 [ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="2_jxu3m"]
@@ -28,6 +29,7 @@ emission_box_extents = Vector3(900, 5, 1)
 gravity = Vector3(0, 98, 0)
 
 [node name="Rooftop" type="Node2D" unique_id=2001946851]
+script = ExtResource("1_2nm55")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1681352819]
 position = Vector2(957.79, 535.95996)

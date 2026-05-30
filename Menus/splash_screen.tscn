@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bu8t1mgqcrcr1"]
+
+[ext_resource type="Script" uid="uid://b6cqyy06wsppu" path="res://Menus/splash_screen.gd" id="1_arguk"]
+[ext_resource type="Texture2D" uid="uid://cnitaop8t5drk" path="res://Imagenes/splashscreenartcat.png" id="2_74eti"]
+[ext_resource type="Texture2D" uid="uid://bsk613aohvvwb" path="res://Imagenes/splashscreenartcat2.png" id="3_r8bb4"]
+[ext_resource type="AudioStream" uid="uid://ds8qhuxeqtqai" path="res://SFX/827171__vikra9409__star-blink.wav" id="4_74eti"]
+
+[sub_resource type="Animation" id="Animation_spqux"]
+resource_name = "Splash"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nodus"]
+_data = {
+&"Splash": SubResource("Animation_spqux")
+}
+
+[node name="SplashScreen" type="Control" unique_id=1942983433]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_arguk")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1585422403]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CatRect1" type="TextureRect" parent="." unique_id=336827248]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -324.0
+offset_right = 274.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_74eti")
+expand_mode = 1
+
+[node name="CatRect2" type="TextureRect" parent="." unique_id=2117451336]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -324.0
+offset_right = 274.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r8bb4")
+expand_mode = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1072570980]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=733356614]
+libraries/ = SubResource("AnimationLibrary_nodus")
+
+[node name="GroupLabel" type="Label" parent="." unique_id=1245942144]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = 76.0
+offset_right = 110.5
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Group 10"
+
+[node name="MiniTextLabel" type="Label" parent="." unique_id=1550651675]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = 275.0
+offset_right = 123.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.002136234, 0.002136234, 0.0021362337, 1)
+text = "(Warning: this game is purely fictional for entertainment purposes. Hurting cats is never okay.)"
+
+[node name="UniversityLabel" type="Label" parent="." unique_id=1159480741]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CatWink" type="AudioStreamPlayer" parent="." unique_id=455289578]
+stream = ExtResource("4_74eti")

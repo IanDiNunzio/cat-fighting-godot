@@ -3,7 +3,8 @@ extends CanvasLayer
 # =========================
 # READY
 # =========================
-
+func _ready():
+	MusicManager.play_menu_music()
 
 # =========================
 # FIGHT
@@ -24,7 +25,7 @@ func _on_training_mode_button_pressed() -> void:
 # =========================
 func _on_options_button_pressed() -> void:
 
-	get_tree().change_scene_to_file("res://Scenes/Options.tscn")
+	get_tree().change_scene_to_file("res://Menus/options_menu.tscn")
 
 # =========================
 # CREDITS

@@ -46,6 +46,7 @@ var selected_mode := "local"
 # =========================
 # READY
 # =========================
+
 func _ready():
 
 	# =========================
@@ -130,6 +131,9 @@ func select_players(amount : int, mode : String):
 
 			4:
 				online_p4.modulate = Color(0.5, 1.5, 1)
+				
+				
+	MusicManager.play_menu_music()
 
 # =========================
 # RESET MAP COLORS

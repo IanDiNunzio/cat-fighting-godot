@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bfbspoe5bj7im"]
+
+[ext_resource type="Script" uid="uid://n7mebn2f6m7v" path="res://Menus/options_menu.gd" id="1_lbr8e"]
+[ext_resource type="Texture2D" uid="uid://dxh4qeb5f52s" path="res://Imagenes/optionsmenubackgroundcat.png" id="2_4idlw"]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1222953869]
+script = ExtResource("1_lbr8e")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=282536179]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4idlw")
+expand_mode = 1
+
+[node name="MusicVBOX" type="VBoxContainer" parent="." unique_id=884867242]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -174.0
+offset_right = 150.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MusicLabel" type="Label" parent="MusicVBOX" unique_id=1954055661]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MusicVBOX" unique_id=304933869]
+layout_mode = 2
+value = 50.0
+
+[node name="SFXVBOX" type="VBoxContainer" parent="." unique_id=1622434667]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 150.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SFXLabel" type="Label" parent="SFXVBOX" unique_id=1932450244]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="SFXVBOX" unique_id=991073625]
+layout_mode = 2
+value = 50.0
+
+[node name="ReturnButton" type="Button" parent="." unique_id=998643059]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 126.0
+offset_right = 50.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
