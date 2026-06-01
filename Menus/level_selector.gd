@@ -163,7 +163,7 @@ func reset_player_colors():
 # =========================
 func _on_return_button_pressed() -> void:
 
-	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 # =========================
 # LOCAL
@@ -224,7 +224,7 @@ func _on_park_pressed():
 
 	select_map(
 		"park",
-		preload("res://Imagenes/parqueimagen.png"),
+		preload("res://Imagenes/parquedia2.png"),
 		park_container
 	)
 
@@ -234,8 +234,8 @@ func _on_park_pressed():
 func _on_beach_pressed():
 
 	select_map(
-		"beach",
-		preload("res://Imagenes/azoteaimagen.png"),
+		"Department",
+		preload("res://Imagenes/Departamentofondo.png"),
 		beach_container
 	)
 
@@ -267,7 +267,7 @@ func _on_ready_button_pressed() -> void:
 			get_tree().change_scene_to_file("res://Escenarios/test_level.tscn")
 
 		"park":
-			get_tree().change_scene_to_file("res://Scenes/park.tscn")
+			get_tree().change_scene_to_file("res://Escenarios/park_day_quick.tscn")
 
 		"beach":
-			get_tree().change_scene_to_file("res://Scenes/beach.tscn")
+			get_tree().change_scene_to_file("res://Escenarios/department_night_quick.tscn")

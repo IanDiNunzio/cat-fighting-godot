@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://de0533lcyvu6o"]
+
+[ext_resource type="Script" uid="uid://budqpi70uqp3t" path="res://Escenarios/department_night_quick.gd" id="1_etiso"]
+[ext_resource type="Texture2D" uid="uid://da7q4peu5xosl" path="res://Imagenes/Departamentofondo.png" id="2_tw5f2"]
+[ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="3_y65kw"]
+[ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="4_r7pif"]
+[ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="5_47epl"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="6_y65kw"]
+[ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="7_r7pif"]
+[ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="8_r7pif"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfqhv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swh6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uoocv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m35o"]
+
+[node name="DepartmentNightQuick" type="Node2D" unique_id=850791068]
+script = ExtResource("1_etiso")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=410477911]
+position = Vector2(580, 323)
+scale = Vector2(0.7526042, 0.6328125)
+texture = ExtResource("2_tw5f2")
+
+[node name="Plataforma" type="StaticBody2D" parent="." unique_id=1439129977]
+position = Vector2(580, 430)
+scale = Vector2(47, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma" unique_id=755289025]
+shape = SubResource("RectangleShape2D_pfqhv")
+
+[node name="PlataformaPeq1" type="StaticBody2D" parent="." unique_id=1716938732]
+position = Vector2(225, 225)
+scale = Vector2(10, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq1" unique_id=1039825377]
+shape = SubResource("RectangleShape2D_swh6m")
+
+[node name="PlataformaPeq2" type="StaticBody2D" parent="." unique_id=1160277906]
+position = Vector2(580, 125)
+scale = Vector2(15, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq2" unique_id=1570532636]
+shape = SubResource("RectangleShape2D_uoocv")
+
+[node name="PlataformaPeq3" type="StaticBody2D" parent="." unique_id=839240722]
+position = Vector2(925, 225)
+scale = Vector2(10, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq3" unique_id=2138576125]
+shape = SubResource("RectangleShape2D_6m35o")
+
+[node name="BlackCat" parent="." unique_id=129876696 instance=ExtResource("3_y65kw")]
+position = Vector2(700, 50)
+
+[node name="OrangeCat" parent="." unique_id=2016829878 instance=ExtResource("4_r7pif")]
+position = Vector2(475, 50)
+
+[node name="UI" parent="." unique_id=233709256 instance=ExtResource("5_47epl")]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1799357217]
+
+[node name="SpawnP1" type="Marker2D" parent="SpawnPoints" unique_id=38129631]
+position = Vector2(250, 100)
+
+[node name="SpawnP2" type="Marker2D" parent="SpawnPoints" unique_id=1041698948]
+position = Vector2(500, 50)
+
+[node name="SpawnP3" type="Marker2D" parent="SpawnPoints" unique_id=2082453535]
+position = Vector2(650, 50)
+
+[node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=1236593532]
+position = Vector2(900, 100)
+
+[node name="ShoeSpawner" type="Node2D" parent="." unique_id=2113767287]
+position = Vector2(560, 400)
+script = ExtResource("6_y65kw")
+shoe_scene = ExtResource("7_r7pif")
+
+[node name="LeftSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=1212927182]
+position = Vector2(-300, -100)
+
+[node name="RightSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=1278323608]
+position = Vector2(300, -100)
+
+[node name="PauseMenu" parent="." unique_id=1902279463 instance=ExtResource("8_r7pif")]

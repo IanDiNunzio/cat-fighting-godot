@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://b7eslyd34alrv"]
+
+[ext_resource type="Script" uid="uid://cv44trnntyv1o" path="res://Escenarios/park_day_quick.gd" id="1_6dg8g"]
+[ext_resource type="Texture2D" uid="uid://dx4ionksgsxes" path="res://Imagenes/parquedia2.png" id="1_fj6k5"]
+[ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="2_6dg8g"]
+[ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="3_muits"]
+[ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="4_qb2bv"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="5_ntsi5"]
+[ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="6_2lxsv"]
+[ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="8_muits"]
+[ext_resource type="PackedScene" uid="uid://it0cu857kr2c" path="res://Scripts/fight_manager.tscn" id="9_ntsi5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_recy5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jtfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srjor"]
+
+[node name="ParkDayQuick" type="Node2D" unique_id=236998320]
+script = ExtResource("1_6dg8g")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=165777712]
+position = Vector2(573.5, 325)
+scale = Vector2(0.749349, 0.63281244)
+texture = ExtResource("1_fj6k5")
+
+[node name="Plataforma" type="StaticBody2D" parent="." unique_id=424480986]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma" unique_id=1076584591]
+position = Vector2(569, 431)
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_recy5")
+
+[node name="PlataformaPeq1" type="StaticBody2D" parent="." unique_id=1846396881]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq1" unique_id=353250658]
+position = Vector2(365, 283)
+scale = Vector2(6, 1)
+shape = SubResource("RectangleShape2D_4jtfe")
+
+[node name="PlataformaPeq2" type="StaticBody2D" parent="." unique_id=204098153]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq2" unique_id=1084818177]
+position = Vector2(731, 285)
+scale = Vector2(6, 1)
+shape = SubResource("RectangleShape2D_srjor")
+
+[node name="BlackCat" parent="." unique_id=129876696 instance=ExtResource("2_6dg8g")]
+position = Vector2(771, 260)
+
+[node name="OrangeCat" parent="." unique_id=2016829878 instance=ExtResource("3_muits")]
+position = Vector2(340, 260)
+
+[node name="UI" parent="." unique_id=233709256 instance=ExtResource("4_qb2bv")]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=509138183]
+
+[node name="SpawnP1" type="Marker2D" parent="SpawnPoints" unique_id=1965705396]
+position = Vector2(353, 149)
+
+[node name="SpawnP2" type="Marker2D" parent="SpawnPoints" unique_id=1903972168]
+position = Vector2(735, 194)
+
+[node name="SpawnP3" type="Marker2D" parent="SpawnPoints" unique_id=1846596164]
+position = Vector2(483, 146)
+
+[node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=237942836]
+position = Vector2(633, 139)
+
+[node name="ShoeSpawner" type="Node2D" parent="." unique_id=1467598882]
+position = Vector2(560, 318)
+script = ExtResource("5_ntsi5")
+shoe_scene = ExtResource("6_2lxsv")
+
+[node name="LeftSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=300328638]
+position = Vector2(-300, -100)
+
+[node name="RightSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=1806160906]
+position = Vector2(300, -100)
+
+[node name="PauseMenu" parent="." unique_id=1902279463 instance=ExtResource("8_muits")]
+
+[node name="FightManager" parent="." unique_id=1078931318 instance=ExtResource("9_ntsi5")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FightManager" unique_id=1281333542]
+
+[node name="CountdownLabel" type="Label" parent="FightManager/CanvasLayer" unique_id=982769155]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2

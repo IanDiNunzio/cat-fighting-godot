@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dpbqe82h2q8ws" path="res://icon.svg" id="2_w1xm8"]
 [ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="4_w1xm8"]
 [ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="5_ters0"]
-[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Escenarios/shoe_spawner.gd" id="7_wwv3y"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="7_wwv3y"]
 [ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="8_3hn0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2mv"]

@@ -48,18 +48,18 @@ text = "The battle is over!"
 
 [node name="WinnerPortrait" type="TextureRect" parent="GameOverScreen" unique_id=2071244237]
 layout_mode = 0
-offset_left = -59.0
-offset_top = -206.0
-offset_right = 141.0
-offset_bottom = -99.0
+offset_left = 34.0
+offset_top = -207.0
+offset_right = 234.0
+offset_bottom = -23.0
 expand_mode = 1
 
 [node name="NameLabel" type="Label" parent="GameOverScreen" unique_id=1210102875]
 layout_mode = 0
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 18.0
-offset_bottom = -77.0
+offset_left = -188.0
+offset_top = -101.0
+offset_right = -70.0
+offset_bottom = -78.0
 text = "Name"
 
 [node name="WinnerLabel" type="Label" parent="GameOverScreen" unique_id=1036244740]

@@ -84,6 +84,7 @@ var facing_direction := 1
 @onready var audio_hit_light = $AudioHitLight
 @onready var audio_hit_heavy = $AudioHitHeavy
 
+var can_move := false
 
 # =========================
 # UI
@@ -182,6 +183,9 @@ func _physics_process(delta):
 	# =========================
 	# MOVIMIENTO
 	# =========================
+	if !can_move:
+		return
+		
 	var direction := 0
 
 	if Input.is_action_pressed("left"):

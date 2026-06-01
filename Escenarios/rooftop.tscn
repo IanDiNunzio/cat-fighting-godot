@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="2_jxu3m"]
 [ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="3_2nm55"]
 [ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="4_lwfkr"]
+[ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="7_lwfkr"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="7_rfcd3"]
+[ext_resource type="PackedScene" uid="uid://it0cu857kr2c" path="res://Scripts/fight_manager.tscn" id="9_gqodu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44bi0"]
 size = Vector2(333, 22)
@@ -32,11 +35,13 @@ gravity = Vector3(0, 98, 0)
 script = ExtResource("1_2nm55")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1681352819]
-position = Vector2(957.79, 535.95996)
+position = Vector2(575.39496, 324.5)
+scale = Vector2(0.6016719, 0.5990741)
 texture = ExtResource("1_a2tvx")
 
 [node name="plataforma colgante" type="StaticBody2D" parent="." unique_id=1176759849]
-position = Vector2(964, 364)
+position = Vector2(575, 225)
+scale = Vector2(0.6, 1)
 script = ExtResource("2_2nm55")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma colgante" unique_id=2094523543]
@@ -60,7 +65,8 @@ offset_bottom = 9.0
 color = Color(0.5882353, 1, 1, 0.5176471)
 
 [node name="Tanque" type="StaticBody2D" parent="." unique_id=1444214894]
-position = Vector2(575, 525)
+position = Vector2(350, 320)
+scale = Vector2(0.7, 0.7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tanque" unique_id=178858793]
 position = Vector2(16, 8)
@@ -68,7 +74,8 @@ shape = SubResource("RectangleShape2D_y8akg")
 one_way_collision = true
 
 [node name="casilla" type="StaticBody2D" parent="." unique_id=759673160]
-position = Vector2(1341, 484)
+position = Vector2(810, 290)
+scale = Vector2(0.6, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="casilla" unique_id=150635366]
 position = Vector2(-13, 0)
@@ -76,19 +83,20 @@ shape = SubResource("RectangleShape2D_hxomw")
 one_way_collision = true
 
 [node name="FLOOR" type="StaticBody2D" parent="." unique_id=1622130483]
-position = Vector2(873, 711)
+position = Vector2(525, 440)
+scale = Vector2(0.64, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FLOOR" unique_id=1862560824]
 position = Vector2(75, 16)
 shape = SubResource("RectangleShape2D_hd6es")
 
 [node name="BlackCat" parent="." unique_id=129876696 instance=ExtResource("2_jxu3m")]
-position = Vector2(724, 223)
+position = Vector2(800, 223)
 scale = Vector2(2, 2)
 jump_force = -600.0
 
 [node name="OrangeCat" parent="." unique_id=2016829878 instance=ExtResource("3_2nm55")]
-position = Vector2(645, 223)
+position = Vector2(400, 223)
 scale = Vector2(2, 2)
 jump_force = -600.0
 
@@ -97,16 +105,16 @@ jump_force = -600.0
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1859583985]
 
 [node name="SpawnP1" type="Marker2D" parent="SpawnPoints" unique_id=1097773483]
-position = Vector2(1033, 331)
+position = Vector2(299, 127)
 
 [node name="SpawnP2" type="Marker2D" parent="SpawnPoints" unique_id=1469452099]
-position = Vector2(546, 492)
+position = Vector2(398, 129)
 
 [node name="SpawnP3" type="Marker2D" parent="SpawnPoints" unique_id=2080072793]
-position = Vector2(358, 660)
+position = Vector2(738, 98)
 
 [node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=2014809993]
-position = Vector2(1392, 450)
+position = Vector2(871, 91)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=983128481]
 position = Vector2(956, -3)
@@ -114,6 +122,34 @@ amount = 300
 amount_ratio = 0.8
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_a2tvx")
+
+[node name="ShoeSpawner" type="Node2D" parent="." unique_id=961260082]
+position = Vector2(560, 300)
+script = ExtResource("7_rfcd3")
+shoe_scene = ExtResource("7_lwfkr")
+
+[node name="LeftSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=29765516]
+position = Vector2(-300, -100)
+
+[node name="RightSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=1983794016]
+position = Vector2(300, -100)
+
+[node name="FightManager" parent="." unique_id=1078931318 instance=ExtResource("9_gqodu")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FightManager" unique_id=1892609558]
+
+[node name="CountdownLabel" type="Label" parent="FightManager/CanvasLayer" unique_id=1193666210]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="plataforma colgante/Area2D" to="plataforma colgante" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="plataforma colgante/Timer" to="plataforma colgante" method="_on_timer_timeout"]

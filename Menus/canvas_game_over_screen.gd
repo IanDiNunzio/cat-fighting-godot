@@ -65,4 +65,4 @@ func _on_exit_button_pressed():
 
 	get_tree().paused = false
 
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Menus/level_selector.tscn")

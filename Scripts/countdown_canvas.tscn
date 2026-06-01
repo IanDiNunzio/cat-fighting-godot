@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://drlo2vxyak8lb"]
+
+[node name="CountdownCanvas" type="CanvasLayer" unique_id=2143405051]
+
+[node name="CountdownLabel" type="Label" parent="." unique_id=1345638023]
+offset_right = 40.0
+offset_bottom = 23.0

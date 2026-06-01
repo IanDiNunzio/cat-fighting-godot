@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://deesx4ygfdthk"]
 
-[ext_resource type="Texture2D" uid="uid://c67ft3vf1be3" path="res://Imagenes/azoteaimagen.png" id="1_2db0o"]
 [ext_resource type="Script" uid="uid://dodido1r2spbs" path="res://Menus/level_selector.gd" id="1_5oq85"]
 [ext_resource type="Texture2D" uid="uid://dy1j1wtvl7h53" path="res://Imagenes/RoofTop.png" id="1_i4jpr"]
 [ext_resource type="Texture2D" uid="uid://bs1ohwhtngkf6" path="res://Imagenes/calleimagen.png" id="2_sn3u0"]
 [ext_resource type="Texture2D" uid="uid://c6jf70mttg3h7" path="res://Imagenes/backgroundart1.png" id="2_xgx1w"]
-[ext_resource type="Texture2D" uid="uid://d2syc6r85ekom" path="res://Imagenes/parqueimagen.png" id="3_3o3bh"]
+[ext_resource type="Texture2D" uid="uid://dx4ionksgsxes" path="res://Imagenes/parquedia2.png" id="5_5oq85"]
+[ext_resource type="Texture2D" uid="uid://da7q4peu5xosl" path="res://Imagenes/Departamentofondo.png" id="6_xgx1w"]
 
 [node name="LevelSelector" type="CanvasLayer" unique_id=925782640]
 script = ExtResource("1_5oq85")
@@ -37,17 +37,17 @@ color = Color(0, 0, 0, 1)
 
 [node name="ReturnButton" type="Button" parent="." unique_id=1959138099]
 offset_left = 700.0
-offset_top = 575.0
+offset_top = 550.0
 offset_right = 800.0
-offset_bottom = 625.0
+offset_bottom = 600.0
 size_flags_horizontal = 4
 text = "Return"
 
 [node name="ReadyButton" type="Button" parent="." unique_id=966603306]
 offset_left = 900.0
-offset_top = 575.0
+offset_top = 550.0
 offset_right = 1000.0
-offset_bottom = 625.0
+offset_bottom = 600.0
 size_flags_horizontal = 4
 text = "Ready"
 
@@ -106,7 +106,7 @@ layout_mode = 2
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer3" unique_id=1227591604]
 custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
-texture_normal = ExtResource("3_3o3bh")
+texture_normal = ExtResource("5_5oq85")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -121,14 +121,14 @@ layout_mode = 2
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/GridContainer/VBoxContainer4" unique_id=1772150731]
 custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
-texture_normal = ExtResource("1_2db0o")
+texture_normal = ExtResource("6_xgx1w")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer4" unique_id=795350049]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Beach"
+text = "Department"
 
 [node name="RightPanel" type="Panel" parent="." unique_id=29368996]
 offset_left = 600.0

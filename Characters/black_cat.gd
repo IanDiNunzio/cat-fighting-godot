@@ -1,78 +1,78 @@
 extends CharacterBody2D
 
-# =========================
+
 # PLAYER
-# =========================
+
 @export var player_id := 2
 
-# =========================
+
 # DATOS PERSONAJE
-# =========================
+
 @export var character_name := "Player 2"
 
 @export var portrait : Texture2D
 
-# =========================
+
 # MOVIMIENTO
-# =========================
+
 @export var speed := 250.0
 @export var jump_force := -500.0
 @export var gravity := 1200.0
 
-# =========================
+
 # DOBLE SALTO
-# =========================
+
 @export var max_jumps := 2
 
 var jumps_left := max_jumps
 
-# =========================
+
 # VIDA
-# =========================
+
 @export var max_hp := 100
 
 var hp := max_hp
 var dead := false
 
-# =========================
+
 # STOCKS / VIDAS
-# =========================
+
 @export var max_stocks := 1
 
 var stocks := max_stocks
 
 @export var respawn_position := Vector2(500, 200)
 
-# =========================
+
 # ATAQUES
-# =========================
+
 @export var light_damage := 10
 @export var heavy_damage := 25
 
-# =========================
+
 # KNOCKBACK
-# =========================
+
 @export var base_knockback := 350.0
 @export var max_knockback := 1200.0
 @export var knockback_vertical := -450.0
 
-# 🔥 AÑADIDO: igualar sistema con Player 1 (si usa ángulo)
+#  AÑADIDO: igualar sistema con Player 1 (si usa ángulo)
 @export var knockback_angle_y := -0.75
 
 var attacking := false
 var can_take_damage := true
 
-# =========================
+
 # STUN
-# =========================
+
 var stunned := false
 
 # Dirección
 var facing_direction := 1
 
-# =========================
+
 # NODOS
-# =========================
+
 @onready var anim = $AnimatedSprite2D
 @onready var sprite = $AnimatedSprite2D
 
@@ -87,16 +87,18 @@ var facing_direction := 1
 @onready var audio_hit_light = $AudioHitLight
 @onready var audio_hit_heavy = $AudioHitHeavy
 
-# =========================
+
+var can_move = true
+
 # UI
-# =========================
+
 @onready var health_label = get_tree().current_scene.get_node(
 	"UI/HUD/BottomUI/P2Anchor/P2_HUD/HealthLabel"
 )
 
-# =========================
+
 # STOCK UI
-# =========================
+
 @onready var stock1 = get_tree().current_scene.get_node(
 	"UI/HUD/BottomUI/P2Anchor/P2_HUD/StockContainer/Stock1"
 )
@@ -109,9 +111,9 @@ var facing_direction := 1
 	"UI/HUD/BottomUI/P2Anchor/P2_HUD/StockContainer/Stock3"
 )
 
-# =========================
+
 # READY
-# =========================
+
 func _ready():
 
 	# Registrar jugador
@@ -160,25 +162,25 @@ func _ready():
 	audio_hit_light.bus = "SFX"
 	audio_hit_heavy.bus = "SFX"
 	
-# =========================
+
 # PHYSICS
-# =========================
+
 func _physics_process(delta):
 
 	if dead:
 		return
 
-	# =========================
+	
 	# GRAVEDAD
-	# =========================
+	
 	if !is_on_floor():
 		velocity.y += gravity * delta
 	else:
 		jumps_left = max_jumps
 
-	# =========================
+	
 	# DOBLE SALTO
-	# =========================
+	
 	if Input.is_action_just_pressed("jumpp2") and jumps_left > 0:
 
 		velocity.y = jump_force
@@ -186,13 +188,17 @@ func _physics_process(delta):
 		jumps_left -= 1
 
 	# Movimiento
+	
+		# Movimiento
 	var direction := 0
 
-	if Input.is_action_pressed("leftp2"):
-		direction = -1
+	if can_move:
 
-	if Input.is_action_pressed("rightp2"):
-		direction = 1
+		if Input.is_action_pressed("leftp2"):
+			direction = -1
+
+		if Input.is_action_pressed("rightp2"):
+			direction = 1
 
 	# Girar personaje
 	if direction != 0:
@@ -203,13 +209,11 @@ func _physics_process(delta):
 
 		$Hitboxes.scale.x = direction
 
-	# 🔥 AÑADIDO: mantener dirección hitboxes cuando no se mueve
-	if direction == 0:
+	else:
+
 		$Hitboxes.scale.x = facing_direction
 
-	# =========================
 	# MOVIMIENTO
-	# =========================
 	if !attacking and !stunned:
 
 		velocity.x = direction * speed
@@ -218,7 +222,6 @@ func _physics_process(delta):
 
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, 30)
-
 	# Ataque ligero
 	if Input.is_action_just_pressed("lightattackp2") and !attacking:
 		light_attack()
@@ -235,9 +238,9 @@ func _physics_process(delta):
 	if global_position.y > 2000:
 		die()
 
-# =========================
+
 # ANIMACIONES
-# =========================
+
 func update_animations(direction):
 
 	if dead:
@@ -258,9 +261,9 @@ func update_animations(direction):
 
 		anim.play("Idle")
 
-# =========================
+
 # ATAQUE LIGERO
-# =========================
+
 func light_attack():
 
 	attacking = true
@@ -277,9 +280,9 @@ func light_attack():
 
 	attacking = false
 
-# =========================
+
 # ATAQUE PESADO
-# =========================
+
 func heavy_attack():
 
 	attacking = true
@@ -296,9 +299,9 @@ func heavy_attack():
 
 	attacking = false
 
-# =========================
+
 # HACER DAÑO
-# =========================
+
 func _on_light_attack_hit(body):
 
 	if body == self:
@@ -323,9 +326,9 @@ func _on_heavy_attack_hit(body):
 
 		body.take_damage(heavy_damage, facing_direction)
 
-# =========================
+
 # RECIBIR DAÑO
-# =========================
+
 func take_damage(amount, attack_direction):
 
 	if !can_take_damage:
@@ -338,9 +341,9 @@ func take_damage(amount, attack_direction):
 
 	print(name, " recibió daño. HP: ", hp)
 
-	# =========================
+	
 	# KNOCKBACK UNIFICADO (IGUAL P1 Y P2)
-	# =========================
+	
 
 	var missing_hp = max_hp - hp
 
@@ -354,13 +357,13 @@ func take_damage(amount, attack_direction):
 	if dir == 0:
 		dir = facing_direction
 
-	# 🔥 UN SOLO SISTEMA (sin doble velocity)
+	# UN SOLO SISTEMA (sin doble velocity)
 	var knock_dir = Vector2(dir, knockback_angle_y).normalized()
 	velocity = knock_dir * knockback_strength
 
-	# =========================
+	
 	# STUN
-	# =========================
+	
 	stunned = true
 
 	update_health_ui()
@@ -378,17 +381,17 @@ func take_damage(amount, attack_direction):
 	if hp <= 0:
 		die()
 
-# =========================
+
 # UI VIDA
-# =========================
+
 func update_health_ui():
 
 	if health_label:
 		health_label.text = str(hp) + " HP"
 
-# =========================
+
 # UI STOCKS
-# =========================
+
 func update_stock_ui():
 
 	if stock1:
@@ -400,9 +403,9 @@ func update_stock_ui():
 	if stock3:
 		stock3.visible = stocks >= 3
 
-# =========================
+
 # MORIR
-# =========================
+
 func die():
 
 	if dead:
@@ -433,9 +436,9 @@ func die():
 
 	respawn()
 
-# =========================
+
 # RESPAWN
-# =========================
+
 func respawn():
 
 	global_position = respawn_position
@@ -450,7 +453,7 @@ func respawn():
 
 	dead = false
 	stunned = false
-	attacking = false  # 🔥 AÑADIDO (igual que P1)
+	attacking = false  
 
 	can_take_damage = false
 
