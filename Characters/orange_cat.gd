@@ -183,16 +183,15 @@ func _physics_process(delta):
 	# =========================
 	# MOVIMIENTO
 	# =========================
-	if !can_move:
-		return
-		
 	var direction := 0
 
-	if Input.is_action_pressed("left"):
-		direction = -1
+	if can_move:
 
-	if Input.is_action_pressed("right"):
-		direction = 1
+		if Input.is_action_pressed("left"):
+			direction = -1
+
+		if Input.is_action_pressed("right"):
+			direction = 1
 
 	# Girar personaje
 	if direction != 0:
