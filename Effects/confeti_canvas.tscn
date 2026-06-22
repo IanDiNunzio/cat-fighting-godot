@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://djttnml5rxxlw"]
+
+[ext_resource type="Script" uid="uid://b0vpodlrvrwfo" path="res://Effects/confeti_canvas.gd" id="1_lg7t7"]
+[ext_resource type="Texture2D" uid="uid://cugilir58on0e" path="res://Imagenes/Confeti.png" id="2_kxtfm"]
+[ext_resource type="AudioStream" uid="uid://bd5cuu2jh6uug" path="res://SFX/840902__klankbeeld__mortar-bomb-fireworks-new-year-netherlands-918-pm-251231_0059.wav" id="3_1yibt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aro8p"]
+atlas = ExtResource("2_kxtfm")
+region = Rect2(0, 256, 311, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp2o8"]
+atlas = ExtResource("2_kxtfm")
+region = Rect2(311, 256, 311, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehwnx"]
+atlas = ExtResource("2_kxtfm")
+region = Rect2(622, 256, 311, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wun6"]
+atlas = ExtResource("2_kxtfm")
+region = Rect2(933, 256, 311, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raykq"]
+atlas = ExtResource("2_kxtfm")
+region = Rect2(622, 512, 311, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxdk7"]
+atlas = ExtResource("2_kxtfm")
+region = Rect2(933, 512, 311, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4p06"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aro8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp2o8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehwnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wun6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raykq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxdk7")
+}],
+"loop": 0,
+"name": &"confetti",
+"speed": 5.0
+}]
+
+[node name="ConfetiCanvas" type="CanvasLayer" unique_id=1260173647]
+script = ExtResource("1_lg7t7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1640361055]
+sprite_frames = SubResource("SpriteFrames_g4p06")
+animation = &"confetti"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=440145]
+stream = ExtResource("3_1yibt")

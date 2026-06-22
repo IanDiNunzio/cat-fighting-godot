@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bdbuub2mw36gf"]
+
+[ext_resource type="Script" uid="uid://durfgalx4ymdc" path="res://Effects/crowd.gd" id="1_v8ucy"]
+[ext_resource type="Texture2D" uid="uid://dnatddwfjxxfh" path="res://Imagenes/crowdmanual.png" id="2_mukjp"]
+
+[node name="Crowd" type="CanvasLayer" unique_id=792009185]
+script = ExtResource("1_v8ucy")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1937849537]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mukjp")
+
+[node name="Timer" type="Timer" parent="." unique_id=1890223589]
+wait_time = 60.0
+autostart = true
+
+[node name="HideTimer" type="Timer" parent="." unique_id=1791304595]
+wait_time = 3.0
+one_shot = true

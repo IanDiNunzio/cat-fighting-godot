@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://chg77b7cgtihm" path="res://Menus/main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://c8ggaidkio0xo" path="res://Imagenes/mainmenuart.png" id="2_at0u2"]
 [ext_resource type="Texture2D" uid="uid://kp7oinoi4425" path="res://Imagenes/mainmenunameart.png" id="3_11gta"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="4_11gta"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=590095451]
 script = ExtResource("1_06t4h")
@@ -53,18 +54,22 @@ theme_override_constants/separation = 20
 
 [node name="FightButton" type="Button" parent="Panel/VBoxContainer" unique_id=700084212]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_11gta")
 text = "Fight!"
 
 [node name="TrainingModeButton" type="Button" parent="Panel/VBoxContainer" unique_id=794814766]
 layout_mode = 2
-text = "Training Mode"
+theme_override_fonts/font = ExtResource("4_11gta")
+text = "LAN - Online"
 
 [node name="OptionsButton" type="Button" parent="Panel/VBoxContainer" unique_id=783544515]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_11gta")
 text = "Options"
 
 [node name="ExitButton" type="Button" parent="Panel/VBoxContainer" unique_id=376960100]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_11gta")
 text = "Exit"
 
 [connection signal="pressed" from="Panel/VBoxContainer/FightButton" to="." method="_on_fight_button_pressed"]

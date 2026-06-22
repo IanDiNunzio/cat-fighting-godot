@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://2h5st42cbe88"]
+
+[ext_resource type="Texture2D" uid="uid://dx4ionksgsxes" path="res://Imagenes/parquedia2.png" id="1_a2ma8"]
+[ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="2_qcrru"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="3_hn2f5"]
+[ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="4_buy3s"]
+[ext_resource type="PackedScene" uid="uid://it0cu857kr2c" path="res://Scripts/fight_manager.tscn" id="5_ndgta"]
+[ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="6_ntupi"]
+[ext_resource type="PackedScene" uid="uid://c13q7mvvihg7i" path="res://Characters/grey_cat.tscn" id="7_k35kn"]
+[ext_resource type="PackedScene" uid="uid://n6i3pfrk6xcv" path="res://Characters/white_cat.tscn" id="8_vjt04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jn0df"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4os4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uoh4"]
+
+[sub_resource type="Gradient" id="Gradient_ntsi5"]
+offsets = PackedFloat32Array(0.60858583)
+colors = PackedColorArray(0, 0.2819711, 0.5952758, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n3qwd"]
+gradient = SubResource("Gradient_ntsi5")
+width = 2
+height = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sj8p6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Gradient" id="Gradient_hqpbc"]
+offsets = PackedFloat32Array(0.60858583)
+colors = PackedColorArray(0, 0.2819711, 0.5952758, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_psmv4"]
+gradient = SubResource("Gradient_hqpbc")
+width = 2
+height = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ojusy"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+gravity = Vector3(0, 98, 0)
+
+[node name="ParkNightQuick" type="Node2D" unique_id=98211354]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1572252540]
+spawn_path = NodePath("../Players")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=814599532]
+position = Vector2(573.5, 325)
+scale = Vector2(0.749349, 0.63281244)
+texture = ExtResource("1_a2ma8")
+
+[node name="Plataforma" type="StaticBody2D" parent="." unique_id=443196689]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma" unique_id=1251022105]
+position = Vector2(569, 431)
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_jn0df")
+
+[node name="PlataformaPeq1" type="StaticBody2D" parent="." unique_id=1888424749]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq1" unique_id=1686262798]
+position = Vector2(365, 283)
+scale = Vector2(6, 1)
+shape = SubResource("RectangleShape2D_4os4v")
+
+[node name="PlataformaPeq2" type="StaticBody2D" parent="." unique_id=264954874]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq2" unique_id=2122251016]
+position = Vector2(731, 285)
+scale = Vector2(6, 1)
+shape = SubResource("RectangleShape2D_2uoh4")
+
+[node name="UI" parent="." unique_id=233709256 instance=ExtResource("2_qcrru")]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=2006302760]
+
+[node name="SpawnP1" type="Marker2D" parent="SpawnPoints" unique_id=430277623]
+position = Vector2(353, 149)
+
+[node name="SpawnP2" type="Marker2D" parent="SpawnPoints" unique_id=1423726815]
+position = Vector2(735, 194)
+
+[node name="SpawnP3" type="Marker2D" parent="SpawnPoints" unique_id=924967996]
+position = Vector2(483, 146)
+
+[node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=1419968203]
+position = Vector2(633, 139)
+
+[node name="ShoeSpawner" type="Node2D" parent="." unique_id=1529735031]
+position = Vector2(560, 318)
+script = ExtResource("3_hn2f5")
+shoe_scene = ExtResource("4_buy3s")
+
+[node name="LeftSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=292186925]
+position = Vector2(-300, -100)
+
+[node name="RightSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=192855170]
+position = Vector2(300, -100)
+
+[node name="FightManager" parent="." unique_id=1078931318 instance=ExtResource("5_ndgta")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FightManager" unique_id=483558901]
+
+[node name="CountdownLabel" type="Label" parent="FightManager/CanvasLayer" unique_id=1404135129]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=654681169]
+position = Vector2(500, 400)
+scale = Vector2(5, 5)
+amount = 300
+texture = SubResource("GradientTexture2D_n3qwd")
+lifetime = 6.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sj8p6")
+
+[node name="PauseMenu" parent="." unique_id=1902279463 instance=ExtResource("6_ntupi")]
+
+[node name="Players" type="Node2D" parent="." unique_id=562758801]
+
+[node name="GreyCat" parent="Players" unique_id=1724709415 instance=ExtResource("7_k35kn")]
+
+[node name="WhiteCat" parent="Players" unique_id=939610252 instance=ExtResource("8_vjt04")]
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1326959318]
+position = Vector2(500, 400)
+scale = Vector2(5, 5)
+amount = 300
+texture = SubResource("GradientTexture2D_psmv4")
+lifetime = 4.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ojusy")

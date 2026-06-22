@@ -9,12 +9,28 @@
 [ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="6_2lxsv"]
 [ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="8_muits"]
 [ext_resource type="PackedScene" uid="uid://it0cu857kr2c" path="res://Scripts/fight_manager.tscn" id="9_ntsi5"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="10_ntsi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_recy5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jtfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srjor"]
+
+[sub_resource type="Gradient" id="Gradient_ntsi5"]
+offsets = PackedFloat32Array(0.60858583)
+colors = PackedColorArray(0, 0.2819711, 0.5952758, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2lxsv"]
+gradient = SubResource("Gradient_ntsi5")
+width = 2
+height = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ntsi5"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+gravity = Vector3(0, 98, 0)
 
 [node name="ParkDayQuick" type="Node2D" unique_id=236998320]
 script = ExtResource("1_6dg8g")
@@ -91,8 +107,20 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_top = -17.5
+offset_right = 80.0
+offset_bottom = 82.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_ntsi5")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=413512427]
+position = Vector2(500, 400)
+scale = Vector2(5, 5)
+amount = 300
+texture = SubResource("GradientTexture2D_2lxsv")
+lifetime = 4.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ntsi5")

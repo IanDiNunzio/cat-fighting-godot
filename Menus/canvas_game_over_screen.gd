@@ -4,24 +4,24 @@ extends CanvasLayer
 @onready var portrait : TextureRect = $GameOverScreen/WinnerPortrait
 @onready var name_label = $GameOverScreen/NameLabel
 
-# =========================
+
 # RETRATOS
-# =========================
+
 @onready var player1_portrait = preload("res://Imagenes/retrato3.png")
 @onready var player2_portrait = preload("res://Imagenes/retratoblackcat.png")
 
-# =========================
+
 # READY
-# =========================
+
 func _ready():
 
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 	visible = false
 
-# =========================
+
 # MOSTRAR GANADOR
-# =========================
+
 func set_winner(player_name : String, winner_portrait = null):
 
 	visible = true
@@ -47,9 +47,9 @@ func set_winner(player_name : String, winner_portrait = null):
 
 		portrait.texture = player2_portrait
 
-# =========================
+
 # RESTART
-# =========================
+
 func _on_restart_button_pressed():
 
 	get_tree().paused = false
@@ -58,9 +58,9 @@ func _on_restart_button_pressed():
 
 	GameManager.restart_match()
 
-# =========================
+
 # EXIT
-# =========================
+
 func _on_exit_button_pressed():
 
 	get_tree().paused = false

@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://bah31smrrifkc"]
+
+[ext_resource type="Script" uid="uid://cxcjdy1if0ryl" path="res://Escenarios/street_quick.gd" id="1_kam0v"]
+[ext_resource type="Texture2D" uid="uid://qfmewpbavt3v" path="res://Imagenes/street.png" id="2_wk04q"]
+[ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="3_0bkh1"]
+[ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="4_atj7f"]
+[ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="5_sa51w"]
+[ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="6_px6sp"]
+[ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="7_c6tnp"]
+[ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="8_fvbuv"]
+[ext_resource type="PackedScene" uid="uid://it0cu857kr2c" path="res://Scripts/fight_manager.tscn" id="9_fdpq2"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="10_aln5d"]
+[ext_resource type="PackedScene" uid="uid://bdbuub2mw36gf" path="res://Effects/crowd.tscn" id="11_wk04q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrwt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dpav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yars6"]
+
+[sub_resource type="Gradient" id="Gradient_ntsi5"]
+offsets = PackedFloat32Array(0.60858583)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a1r8p"]
+gradient = SubResource("Gradient_ntsi5")
+width = 4
+height = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vmsmf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+spread = 10.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+
+[node name="StreetQuick" type="Node2D" unique_id=1916235821]
+script = ExtResource("1_kam0v")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=690345691]
+position = Vector2(573.5, 325)
+scale = Vector2(0.7, 0.75)
+texture = ExtResource("2_wk04q")
+
+[node name="Plataforma" type="StaticBody2D" parent="." unique_id=540314170]
+position = Vector2(300, 60)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma" unique_id=1209456784]
+position = Vector2(569, 431)
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_hrwt7")
+
+[node name="PlataformaPeq1" type="StaticBody2D" parent="." unique_id=1477942942]
+position = Vector2(0, 230)
+scale = Vector2(3, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq1" unique_id=1317735909]
+position = Vector2(350, 283)
+scale = Vector2(6, 1)
+shape = SubResource("RectangleShape2D_4dpav")
+
+[node name="PlataformaPeq2" type="StaticBody2D" parent="." unique_id=1140673758]
+position = Vector2(-620, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq2" unique_id=1528456624]
+position = Vector2(731, 285)
+scale = Vector2(20, 1)
+shape = SubResource("RectangleShape2D_yars6")
+
+[node name="BlackCat" parent="." unique_id=129876696 instance=ExtResource("3_0bkh1")]
+position = Vector2(771, 260)
+
+[node name="OrangeCat" parent="." unique_id=2016829878 instance=ExtResource("4_atj7f")]
+position = Vector2(340, 260)
+
+[node name="UI" parent="." unique_id=233709256 instance=ExtResource("5_sa51w")]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=480876711]
+
+[node name="SpawnP1" type="Marker2D" parent="SpawnPoints" unique_id=1182320766]
+position = Vector2(200, 149)
+
+[node name="SpawnP2" type="Marker2D" parent="SpawnPoints" unique_id=835342375]
+position = Vector2(1000, 194)
+
+[node name="SpawnP3" type="Marker2D" parent="SpawnPoints" unique_id=930034319]
+position = Vector2(483, 146)
+
+[node name="SpawnP4" type="Marker2D" parent="SpawnPoints" unique_id=1062267013]
+position = Vector2(633, 139)
+
+[node name="ShoeSpawner" type="Node2D" parent="." unique_id=2100568936]
+position = Vector2(560, 318)
+script = ExtResource("6_px6sp")
+shoe_scene = ExtResource("7_c6tnp")
+
+[node name="LeftSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=261093928]
+position = Vector2(-300, -100)
+
+[node name="RightSpawn" type="Marker2D" parent="ShoeSpawner" unique_id=1919899393]
+position = Vector2(300, -100)
+
+[node name="PauseMenu" parent="." unique_id=1902279463 instance=ExtResource("8_fvbuv")]
+visible = false
+
+[node name="FightManager" parent="." unique_id=1078931318 instance=ExtResource("9_fdpq2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FightManager" unique_id=302166049]
+
+[node name="CountdownLabel" type="Label" parent="FightManager/CanvasLayer" unique_id=701925848]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -17.5
+offset_right = 80.0
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_aln5d")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1119715484]
+position = Vector2(500, 400)
+scale = Vector2(5, 5)
+amount = 50
+texture = SubResource("GradientTexture2D_a1r8p")
+lifetime = 4.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vmsmf")
+
+[node name="Crowd" parent="." unique_id=792009185 instance=ExtResource("11_wk04q")]

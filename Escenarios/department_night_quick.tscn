@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://de0533lcyvu6o"]
 
 [ext_resource type="Script" uid="uid://budqpi70uqp3t" path="res://Escenarios/department_night_quick.gd" id="1_etiso"]
-[ext_resource type="Texture2D" uid="uid://da7q4peu5xosl" path="res://Imagenes/Departamentofondo.png" id="2_tw5f2"]
+[ext_resource type="Texture2D" uid="uid://cmmy62qg3agcv" path="res://Imagenes/deparmento.png" id="2_02qj8"]
 [ext_resource type="PackedScene" uid="uid://4r3u1fjklgqv" path="res://Characters/black_cat.tscn" id="3_y65kw"]
 [ext_resource type="PackedScene" uid="uid://bhjsgdpfsodxe" path="res://Characters/orange_cat.tscn" id="4_r7pif"]
 [ext_resource type="PackedScene" uid="uid://dngef432ameqx" path="res://UI/ui.tscn" id="5_47epl"]
 [ext_resource type="Script" uid="uid://cb07xwwbrcvhi" path="res://Objetos/shoe_spawner.gd" id="6_y65kw"]
 [ext_resource type="PackedScene" uid="uid://benbevgow8cg8" path="res://Objetos/shoe.tscn" id="7_r7pif"]
 [ext_resource type="PackedScene" uid="uid://drl3ikj1eysot" path="res://Menus/pause_menu.tscn" id="8_r7pif"]
+[ext_resource type="PackedScene" uid="uid://it0cu857kr2c" path="res://Scripts/fight_manager.tscn" id="9_u6wqx"]
+[ext_resource type="PackedScene" uid="uid://bdbuub2mw36gf" path="res://Effects/crowd.tscn" id="10_noaj4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfqhv"]
 
@@ -23,32 +25,32 @@ script = ExtResource("1_etiso")
 [node name="Background" type="Sprite2D" parent="." unique_id=410477911]
 position = Vector2(580, 323)
 scale = Vector2(0.7526042, 0.6328125)
-texture = ExtResource("2_tw5f2")
+texture = ExtResource("2_02qj8")
 
 [node name="Plataforma" type="StaticBody2D" parent="." unique_id=1439129977]
-position = Vector2(580, 430)
-scale = Vector2(47, 1)
+position = Vector2(600, 350)
+scale = Vector2(33, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma" unique_id=755289025]
 shape = SubResource("RectangleShape2D_pfqhv")
 
 [node name="PlataformaPeq1" type="StaticBody2D" parent="." unique_id=1716938732]
-position = Vector2(225, 225)
-scale = Vector2(10, 1)
+position = Vector2(250, 290)
+scale = Vector2(8, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq1" unique_id=1039825377]
 shape = SubResource("RectangleShape2D_swh6m")
 
 [node name="PlataformaPeq2" type="StaticBody2D" parent="." unique_id=1160277906]
-position = Vector2(580, 125)
-scale = Vector2(15, 1)
+position = Vector2(675, 225)
+scale = Vector2(7, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq2" unique_id=1570532636]
 shape = SubResource("RectangleShape2D_uoocv")
 
 [node name="PlataformaPeq3" type="StaticBody2D" parent="." unique_id=839240722]
-position = Vector2(925, 225)
-scale = Vector2(10, 1)
+position = Vector2(1050, 210)
+scale = Vector2(7, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq3" unique_id=2138576125]
 shape = SubResource("RectangleShape2D_6m35o")
@@ -87,3 +89,51 @@ position = Vector2(-300, -100)
 position = Vector2(300, -100)
 
 [node name="PauseMenu" parent="." unique_id=1902279463 instance=ExtResource("8_r7pif")]
+visible = false
+
+[node name="PlataformaPeq4" type="StaticBody2D" parent="." unique_id=381709217]
+position = Vector2(1050, 400)
+scale = Vector2(7, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq4" unique_id=557680296]
+shape = SubResource("RectangleShape2D_6m35o")
+
+[node name="PlataformaPeq5" type="StaticBody2D" parent="." unique_id=1355875917]
+position = Vector2(950, 450)
+scale = Vector2(7, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq5" unique_id=1446605924]
+shape = SubResource("RectangleShape2D_6m35o")
+
+[node name="PlataformaPeq6" type="StaticBody2D" parent="." unique_id=949077314]
+position = Vector2(120, 400)
+scale = Vector2(10, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq6" unique_id=920690827]
+shape = SubResource("RectangleShape2D_swh6m")
+
+[node name="PlataformaPeq7" type="StaticBody2D" parent="." unique_id=170761657]
+position = Vector2(250, 460)
+scale = Vector2(8, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPeq7" unique_id=1976083536]
+shape = SubResource("RectangleShape2D_swh6m")
+
+[node name="FightManager" parent="." unique_id=1078931318 instance=ExtResource("9_u6wqx")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FightManager" unique_id=49429506]
+
+[node name="CountdownLabel" type="Label" parent="FightManager/CanvasLayer" unique_id=1939101365]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crowd" parent="." unique_id=792009185 instance=ExtResource("10_noaj4")]
