@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://v3t01ty71h7e" path="res://Objetos/shoe.gd" id="1_wj3bj"]
 [ext_resource type="Texture2D" uid="uid://rytbudv61bhe" path="res://Imagenes/attackshoe.png" id="2_wosnf"]
+[ext_resource type="AudioStream" uid="uid://dbkarbikvvhgy" path="res://SFX/162497__pipelyd__shoe-sole-rubber-squeak-tile-hall-1.wav" id="3_naaxv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vkk76"]
 friction = 0.2
@@ -26,3 +27,4 @@ scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_uhlim")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=949104664]
+stream = ExtResource("3_naaxv")

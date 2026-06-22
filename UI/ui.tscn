@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c08dps4yqpjdq" path="res://Imagenes/retrato3.png" id="2_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://ci44ikqcv8qap" path="res://Imagenes/estambre.png" id="3_3sbvi"]
 [ext_resource type="Texture2D" uid="uid://b2pfydcsm7i4h" path="res://Imagenes/retratoblackcat.png" id="3_hat8c"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="3_nm1m0"]
 
 [node name="UI" type="CanvasLayer" unique_id=233709256]
 script = ExtResource("1_2fwl4")
@@ -96,6 +97,7 @@ offset_top = -23.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_nm1m0")
 text = "Catjohn"
 
 [node name="HealthLabel" type="Label" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=1860427045]
@@ -111,6 +113,7 @@ offset_right = 20.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_nm1m0")
 
 [node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P1Anchor/P1_HUD" unique_id=572179895]
 layout_mode = 0
@@ -168,6 +171,7 @@ offset_top = -23.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_nm1m0")
 text = "Midnight"
 
 [node name="HealthLabel" type="Label" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=1733052051]
@@ -183,6 +187,7 @@ offset_right = 20.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_nm1m0")
 
 [node name="StockContainer" type="HBoxContainer" parent="HUD/BottomUI/P2Anchor/P2_HUD" unique_id=170787289]
 layout_mode = 0

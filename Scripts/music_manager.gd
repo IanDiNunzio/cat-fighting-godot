@@ -3,9 +3,9 @@ extends Node
 @onready var music_player = $MusicPlayer
 @onready var sfx_player = $SFXPlayer
 
-# =========================
+
 # MUSICAS
-# =========================
+
 
 var menu_music = preload("res://Musica/627416__victor_natas__fear-creeps-upon-you.wav")
 var level_select_music = preload("res://Musica/627416__victor_natas__fear-creeps-upon-you.wav")
@@ -13,9 +13,9 @@ var level_select_music = preload("res://Musica/627416__victor_natas__fear-creeps
 var rooftop_music = preload("res://Musica/419802__sirkoto51__anime-encounter-loop-3.wav")
 var training_music = preload("res://Musica/419802__sirkoto51__anime-encounter-loop-3.wav")
 
-# =========================
+
 # CONTROL
-# =========================
+
 
 var current_track_name := ""
 
@@ -59,9 +59,9 @@ func play_sfx(sound: AudioStream):
 	sfx_player.stream = sound
 	sfx_player.play()
 
-# =========================
+
 # VOLUMEN
-# =========================
+
 
 func set_music_volume(value: float):
 	music_volume = value
@@ -79,9 +79,9 @@ func set_sfx_volume(value: float):
 	else:
 		sfx_player.volume_db = linear_to_db(value)
 
-# =========================
+
 # ACCESOS RAPIDOS
-# =========================
+
 
 func play_menu_music():
 	play_music(menu_music, "menu")
