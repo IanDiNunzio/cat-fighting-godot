@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n7mebn2f6m7v" path="res://Menus/options_menu.gd" id="1_lbr8e"]
 [ext_resource type="Texture2D" uid="uid://dxh4qeb5f52s" path="res://Imagenes/optionsmenubackgroundcat.png" id="2_4idlw"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="3_7gq10"]
 
 [node name="OptionsMenu" type="CanvasLayer" unique_id=1222953869]
 script = ExtResource("1_lbr8e")
@@ -31,6 +32,7 @@ grow_vertical = 2
 [node name="MusicLabel" type="Label" parent="MusicVBOX" unique_id=1954055661]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_7gq10")
 text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="MusicVBOX" unique_id=304933869]
@@ -53,11 +55,29 @@ grow_vertical = 2
 [node name="SFXLabel" type="Label" parent="SFXVBOX" unique_id=1932450244]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_7gq10")
 text = "SFX"
 
 [node name="SFXSlider" type="HSlider" parent="SFXVBOX" unique_id=991073625]
 layout_mode = 2
 value = 50.0
+
+[node name="TeamName" type="Label" parent="." unique_id=360197344]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = 56.0
+offset_right = 113.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_7gq10")
+text = "                           Made by:
+Ian Di Nunzio & Mateo Urrutia
+       (A project for the UPSO)"
 
 [node name="ReturnButton" type="Button" parent="." unique_id=998643059]
 anchors_preset = 8
@@ -66,11 +86,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = 126.0
+offset_top = 176.0
 offset_right = 50.0
-offset_bottom = 176.0
+offset_bottom = 226.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_7gq10")
 text = "Return"
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
