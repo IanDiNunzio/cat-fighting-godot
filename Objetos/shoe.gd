@@ -10,6 +10,8 @@ extends RigidBody2D
 @export var knockback_force := 700.0
 @export var knockback_vertical := -250.0
 
+@onready var audio = $AudioStreamPlayer
+
 var still_timer := 0.0
 
 func _ready():
@@ -20,6 +22,8 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func launch(from_left := true):
+
+	audio.play()
 
 	var angle = deg_to_rad(45)
 

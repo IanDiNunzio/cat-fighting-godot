@@ -28,9 +28,13 @@ var dead := false
 
 
 # STOCKS / VIDAS
-@export var max_stocks := 1
+@export var max_stocks := 3
 var stocks := max_stocks
 @export var respawn_position := Vector2(500, 200)
+@export var confetti_scene: PackedScene
+@export var death_sfx: AudioStream
+@onready var audio_death = $AudioDeath
+
 
 
 # ATAQUES
@@ -81,7 +85,7 @@ var can_move := false
 @onready var hit_light_sfx = $AudioHitLight
 @onready var hit_heavy_sfx = $AudioHitHeavy
 
-# 🎧 AÑADIDO AUDIO
+#  AÑADIDO AUDIO
 @onready var audio_jump = $AudioJumping
 @onready var audio_special = $AudioSpecialAttack
 
@@ -193,12 +197,12 @@ func _physics_process(delta):
 		$Hitboxes.scale.x = facing_direction
 
 
-		# MOVIMIENTO FINAL
+		# MOVIMIENTO 
 	if !attacking and !stunned:
 
 		var final_speed = speed
 
-		# si está bloqueando, reduce velocidad
+		# si esta bloqueando, reduce velocidad
 		if blocking:
 			final_speed *= 0.4
 
@@ -239,12 +243,18 @@ func update_animations(direction):
 		anim.play("Walking")
 	else:
 		anim.play("Idle")
-
+	if blocking:
+		anim.play("Block")
+		return
 
 # ATAQUE LIGERO
 func light_attack():
+
 	attacking = true
 	anim.play("LightAttack")
+
+	if hit_light_sfx and MusicManager.sfx_volume > 0:
+		hit_light_sfx.play()
 
 	light_hitbox.monitoring = true
 	await get_tree().create_timer(0.2).timeout
@@ -256,8 +266,12 @@ func light_attack():
 
 # ATAQUE PESADO
 func heavy_attack():
+
 	attacking = true
 	anim.play("HeavyAttack")
+
+	if hit_heavy_sfx and MusicManager.sfx_volume > 0:
+		hit_heavy_sfx.play()
 
 	heavy_hitbox.monitoring = true
 	await get_tree().create_timer(0.35).timeout
@@ -385,6 +399,19 @@ func die():
 
 	update_stock_ui()
 
+	
+	if confetti_scene:
+		var confetti = confetti_scene.instantiate()
+		get_tree().current_scene.add_child(confetti)
+		confetti.play_confetti()
+
+	
+	if audio_death and MusicManager.sfx_volume > 0:
+		audio_death.play()
+
+	update_stock_ui()
+
+	
 	if stocks <= 0:
 		GameManager.check_winner()
 		queue_free()
@@ -392,7 +419,6 @@ func die():
 
 	await get_tree().create_timer(1.0).timeout
 	respawn()
-
 
 # RESPAWN
 func respawn():

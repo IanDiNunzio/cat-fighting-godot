@@ -1,26 +1,26 @@
 extends Node
 
-# =========================
+
 # CONFIGURACION
-# =========================
+
 var player_count := 2
 
-# =========================
+
 # JUGADORES
-# =========================
+
 var players := []
 
-# =========================
+
 # ESCENA GAME OVER
-# =========================
+
 var game_over_scene : PackedScene = preload("res://Menus/canvas_game_over_screen.tscn")
 
 # Evitar mostrar varias veces
 var game_ended := false
 
-# =========================
+
 # READY
-# =========================
+
 func _ready():
 
 	# Verificar que exista la escena
@@ -28,17 +28,17 @@ func _ready():
 
 		push_error("No se pudo cargar game_over_screen.tscn")
 
-# =========================
+
 # REGISTRAR JUGADOR
-# =========================
+
 func register_player(player):
 
 	if player not in players:
 		players.append(player)
 
-# =========================
+
 # ELIMINAR JUGADOR
-# =========================
+
 func remove_player(player):
 
 	if player in players:
@@ -46,9 +46,9 @@ func remove_player(player):
 
 	check_winner()
 
-# =========================
+
 # VERIFICAR GANADOR
-# =========================
+
 func check_winner():
 
 	# Evitar repetir
@@ -69,9 +69,9 @@ func check_winner():
 
 		show_game_over(alive_players[0])
 
-# =========================
+
 # MOSTRAR PANTALLA FINAL
-# =========================
+
 func show_game_over(winner):
 
 	# Verificar escena
@@ -92,10 +92,10 @@ func show_game_over(winner):
 	# Permitir funcionar pausado
 	screen.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-	# Añadir a escena actual
+	# Añade a escena actual
 	get_tree().current_scene.add_child(screen)
 
-	# Pasar datos del ganador
+	# Pasa datos del ganador
 	if screen.has_method("set_winner"):
 
 		screen.set_winner(
@@ -103,12 +103,12 @@ func show_game_over(winner):
 			winner.portrait
 		)
 
-	# Pausar DESPUES de crear la UI
+	# Pausa DESPUES de crear la UI
 	get_tree().paused = true
 
-# =========================
+
 # REINICIAR PELEA
-# =========================
+
 func restart_match():
 
 	game_ended = false

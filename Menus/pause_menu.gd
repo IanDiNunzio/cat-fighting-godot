@@ -17,22 +17,22 @@ func toggle_pause():
 	get_tree().paused = is_paused
 	visible = is_paused
 
-# =========================
+
 # RESUME
-# =========================
+
 func _on_resume_button_pressed() -> void:
 	toggle_pause()
 
-# =========================
+
 # RESTART
-# =========================
+
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
-# =========================
+
 # MAIN MENU
-# =========================
+
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")

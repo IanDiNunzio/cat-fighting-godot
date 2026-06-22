@@ -1,15 +1,15 @@
 extends Control
 
-# =========================
+
 # AUDIO
-# =========================
+
 @onready var sfx_player: AudioStreamPlayer = $Audio/SFXPlayer
 @export var click_sound: AudioStream
 
 
-# =========================
+
 # UI PREVIEW
-# =========================
+
 @onready var preview_image = $PreviewPanel/CharacterImage
 @onready var preview_name = $PreviewPanel/CharacterName
 
@@ -21,9 +21,9 @@ extends Control
 @onready var back_button = $HBoxContainer/BackButton
 
 
-# =========================
+
 # PLAYER COUNT
-# =========================
+
 @onready var btn_2_players = $PlayerCountContainer/Btn2Players
 @onready var btn_3_players = $PlayerCountContainer/Btn3Players
 @onready var btn_4_players = $PlayerCountContainer/Btn4Players
@@ -31,9 +31,9 @@ extends Control
 @onready var player_buttons = [btn_2_players, btn_3_players, btn_4_players]
 
 
-# =========================
+
 # CHARACTERS
-# =========================
+
 var characters = {
 	"Black Cat": {"texture": preload("res://Imagenes/retrato4.png"), "speed": "★★★★☆", "attack": "★★★☆☆", "weight": "★★☆☆☆"},
 	"Orange Cat": {"texture": preload("res://Imagenes/retrato3.png"), "speed": "★★★☆☆", "attack": "★★★★☆", "weight": "★★★☆☆"},
@@ -42,17 +42,17 @@ var characters = {
 }
 
 
-# =========================
+
 # GAME STATE
-# =========================
+
 var selected_players := 2
-var player_selections := {}   # player_id -> character
-var character_taken := {}     # character -> true
+var player_selections := {}  
+var character_taken := {}     
 
 
-# =========================
+
 # READY
-# =========================
+
 func _ready():
 
 	for b in player_buttons:
@@ -64,31 +64,31 @@ func _ready():
 	back_button.pressed.connect(on_back_pressed)
 
 
-# =========================
+
 # CLICK SOUND
-# =========================
+
 func play_click():
 	if click_sound:
 		sfx_player.stream = click_sound
 		sfx_player.play()
 
 
-# =========================
+
 # CORE FIXED SELECTOR
-# =========================
+
 func select_character(character_name: String):
 
 	play_click()
 
-	# ❌ ya está tomado
+	#  ya está tomado
 	if character_taken.has(character_name):
 		return
 
-	# ❌ ya no hay slots
+	#  ya no hay slots
 	if player_selections.size() >= selected_players:
 		return
 
-	# 🧠 PLAYER = ORDEN REAL DE CLICK
+	#  PLAYER = ORDEN REAL DE CLICK
 	var player_id = player_selections.size() + 1
 
 	player_selections[player_id] = character_name
@@ -104,9 +104,9 @@ func select_character(character_name: String):
 	weight_label.text = "Weight: " + data["weight"]
 
 
-# =========================
+
 # PLAYER COUNT
-# =========================
+
 func select_player_button(active_button, amount):
 
 	play_click()
@@ -127,9 +127,9 @@ func _on_btn_3_players_pressed(): select_player_button(btn_3_players, 3)
 func _on_btn_4_players_pressed(): select_player_button(btn_4_players, 4)
 
 
-# =========================
-# CHARACTER BUTTONS (IMPORTANT FIX)
-# =========================
+
+# Botones (IMPORTANT FIX)
+
 func _on_texture_button_pressed():
 	select_character("Black Cat")
 
@@ -143,9 +143,9 @@ func _on_texture_button_4_pressed():
 	select_character("Gray Cat")
 
 
-# =========================
+
 # READY / BACK
-# =========================
+
 func on_ready_pressed():
 
 	play_click()
