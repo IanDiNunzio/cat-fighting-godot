@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8ve8w6lhvg8q" path="res://Menus/pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="Texture2D" uid="uid://dk7h036c1ypbf" path="res://Imagenes/menubackground.png" id="2_ik086"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="3_2og8s"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1902279463]
 process_mode = 2
@@ -46,14 +47,17 @@ theme_override_constants/separation = 20
 
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer" unique_id=1650102751]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2og8s")
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="Panel/VBoxContainer" unique_id=1672546783]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2og8s")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer" unique_id=1656063326]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2og8s")
 text = "Main Menu"
 
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cnitaop8t5drk" path="res://Imagenes/splashscreenartcat.png" id="2_74eti"]
 [ext_resource type="Texture2D" uid="uid://bsk613aohvvwb" path="res://Imagenes/splashscreenartcat2.png" id="3_r8bb4"]
 [ext_resource type="AudioStream" uid="uid://ds8qhuxeqtqai" path="res://SFX/827171__vikra9409__star-blink.wav" id="4_74eti"]
+[ext_resource type="FontFile" uid="uid://cnjamfdgkoli0" path="res://Text Font/pixelart.ttf" id="4_wkfo8"]
 
 [sub_resource type="Animation" id="Animation_spqux"]
 resource_name = "Splash"
@@ -85,6 +86,7 @@ offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wkfo8")
 theme_override_font_sizes/font_size = 50
 text = "Group 10"
 
@@ -102,7 +104,25 @@ offset_bottom = 298.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.002136234, 0.002136234, 0.0021362337, 1)
+theme_override_fonts/font = ExtResource("4_wkfo8")
 text = "(Warning: this game is purely fictional for entertainment purposes. Hurting cats is never okay.)"
+
+[node name="MiniTextLabel2" type="Label" parent="." unique_id=992025129]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 176.0
+offset_right = 63.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.002136234, 0.002136234, 0.0021362337, 1)
+theme_override_fonts/font = ExtResource("4_wkfo8")
+text = "(Use 1152 x 648)"
 
 [node name="UniversityLabel" type="Label" parent="." unique_id=1159480741]
 layout_mode = 0
