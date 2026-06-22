@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://4r3u1fjklgqv"]
 
 [ext_resource type="Script" uid="uid://n8qamjedji8r" path="res://Characters/black_cat.gd" id="1_x46l8"]
+[ext_resource type="PackedScene" uid="uid://djttnml5rxxlw" path="res://Effects/confeti_canvas.tscn" id="2_70pdf"]
 [ext_resource type="Texture2D" uid="uid://chnnxo1o7okwo" path="res://Imagenes/sh1attack.png" id="2_q1l2b"]
+[ext_resource type="Texture2D" uid="uid://dba8cudxw6lre" path="res://Imagenes/cajagatospritesheet.png" id="3_rqnmn"]
 [ext_resource type="Texture2D" uid="uid://dpcm0wh88uvx0" path="res://Imagenes/sh1jumpinghurt.png" id="3_wlte2"]
 [ext_resource type="Texture2D" uid="uid://8rlnx5r2ct5p" path="res://Imagenes/sh1walking.png" id="4_wlte2"]
 [ext_resource type="AudioStream" uid="uid://dfe6p2qefq4r2" path="res://SFX/125426__jspath1__punch.wav" id="5_q7i8r"]
@@ -10,8 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://bbi7efkoi2vny" path="res://SFX/369515__lefty_studios__jumping-sfx.wav" id="8_70pdf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37syp"]
-atlas = ExtResource("3_wlte2")
-region = Rect2(720, 780, 240, 195)
+atlas = ExtResource("3_rqnmn")
+region = Rect2(776, 0, 194, 171)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5g2q"]
 atlas = ExtResource("2_q1l2b")
@@ -51,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_37syp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Block",
 "speed": 5.0
 }, {
@@ -59,7 +61,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g5g2q")
 }],
-"loop": true,
+"loop": 1,
 "name": &"HeavyAttack",
 "speed": 5.0
 }, {
@@ -67,7 +69,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q7i8r")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Hurt",
 "speed": 5.0
 }, {
@@ -75,7 +77,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wlte2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -83,7 +85,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gyrwy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -91,7 +93,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_70pdf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"LightAttack",
 "speed": 5.0
 }, {
@@ -99,7 +101,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_msjb4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"SpecialAttack",
 "speed": 5.0
 }, {
@@ -110,7 +112,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6i4ym")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walking",
 "speed": 5.0
 }]
@@ -125,6 +127,7 @@ animations = [{
 
 [node name="BlackCat" type="CharacterBody2D" unique_id=129876696 groups=["players"]]
 script = ExtResource("1_x46l8")
+confetti_scene = ExtResource("2_70pdf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141691243]
 position = Vector2(-0.99999994, -3.9999998)
@@ -179,6 +182,8 @@ stream = ExtResource("7_gyrwy")
 
 [node name="AudioJumping" type="AudioStreamPlayer" parent="." unique_id=1298302154]
 stream = ExtResource("8_70pdf")
+
+[node name="AudioDeath" type="AudioStreamPlayer" parent="." unique_id=327269954]
 
 [connection signal="body_entered" from="Hitboxes/LightAttack" to="." method="_on_light_attack_body_entered"]
 [connection signal="body_entered" from="Hitboxes/HeavyAttack" to="." method="_on_heavy_attack_body_entered"]

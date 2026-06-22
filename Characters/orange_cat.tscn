@@ -2,10 +2,18 @@
 
 [ext_resource type="Script" uid="uid://t2akghk3081c" path="res://Characters/orange_cat.gd" id="1_kodo7"]
 [ext_resource type="Texture2D" uid="uid://db7nad6ku214w" path="res://Imagenes/sh2attack.png" id="2_ct35f"]
+[ext_resource type="PackedScene" uid="uid://djttnml5rxxlw" path="res://Effects/confeti_canvas.tscn" id="2_kc3xe"]
+[ext_resource type="Texture2D" uid="uid://dba8cudxw6lre" path="res://Imagenes/cajagatospritesheet.png" id="3_4ocot"]
 [ext_resource type="Texture2D" uid="uid://d2q3841hmecyo" path="res://Imagenes/spritesheet2transp.png" id="3_kodo7"]
 [ext_resource type="Texture2D" uid="uid://1ean3c6hqmxp" path="res://Imagenes/sh2walking.png" id="3_pkrlc"]
 [ext_resource type="AudioStream" uid="uid://dfe6p2qefq4r2" path="res://SFX/125426__jspath1__punch.wav" id="5_2xgbt"]
 [ext_resource type="AudioStream" uid="uid://nhahdkl0m7cc" path="res://SFX/493916__damnsatinist__intense-punch.wav" id="6_sme2b"]
+[ext_resource type="AudioStream" uid="uid://c4vn2glyjwgtx" path="res://SFX/110011__tuberatanka__cat-meow.wav" id="7_kj4ts"]
+[ext_resource type="AudioStream" uid="uid://bbi7efkoi2vny" path="res://SFX/369515__lefty_studios__jumping-sfx.wav" id="8_kc3xe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lbmv"]
+atlas = ExtResource("3_4ocot")
+region = Rect2(776, 0, 194, 171)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41v8s"]
 atlas = ExtResource("2_ct35f")
@@ -23,6 +31,10 @@ region = Rect2(410, 400, 180, 200)
 atlas = ExtResource("2_ct35f")
 region = Rect2(440, 175, 220, 175)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc3xe"]
+atlas = ExtResource("2_ct35f")
+region = Rect2(698, 0, 349, 341)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mln24"]
 atlas = ExtResource("3_pkrlc")
 region = Rect2(384, 380, 192, 190)
@@ -35,9 +47,17 @@ region = Rect2(1344, 380, 192, 190)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5lbmv")
+}],
+"loop": 1,
+"name": &"Block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_41v8s")
 }],
-"loop": false,
+"loop": 0,
 "name": &"HeavyAttack",
 "speed": 5.0
 }, {
@@ -45,7 +65,7 @@ animations = [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_c5ctf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -53,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kodo7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -61,8 +81,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q08i7")
 }],
-"loop": false,
+"loop": 0,
 "name": &"LightAttack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc3xe")
+}],
+"loop": 1,
+"name": &"SpecialAttack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -72,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d1cdu")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walking",
 "speed": 5.0
 }]
@@ -86,15 +114,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wde3"]
 size = Vector2(30, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kj4ts"]
+
 [node name="OrangeCat" type="CharacterBody2D" unique_id=2016829878 groups=["players"]]
 script = ExtResource("1_kodo7")
+confetti_scene = ExtResource("2_kc3xe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=109672442]
 position = Vector2(-3, -4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_ar2ro")
-animation = &"Walking"
-frame_progress = 0.47559923
+animation = &"Block"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1908407707]
 shape = SubResource("CapsuleShape2D_y2b2p")
@@ -125,8 +155,22 @@ shape = SubResource("RectangleShape2D_0k2uh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/HeavyAttack" unique_id=218775980]
 shape = SubResource("RectangleShape2D_2wde3")
 
+[node name="SpecialAttack" type="Area2D" parent="Hitboxes" unique_id=854794888]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/SpecialAttack" unique_id=1831284702]
+scale = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_kj4ts")
+
 [node name="AudioHitLight" type="AudioStreamPlayer" parent="." unique_id=1560537521]
 stream = ExtResource("5_2xgbt")
 
 [node name="AudioHitHeavy" type="AudioStreamPlayer" parent="." unique_id=790960560]
 stream = ExtResource("6_sme2b")
+
+[node name="AudioSpecialAttack" type="AudioStreamPlayer" parent="." unique_id=378672917]
+stream = ExtResource("7_kj4ts")
+
+[node name="AudioJumping" type="AudioStreamPlayer" parent="." unique_id=1679287645]
+stream = ExtResource("8_kc3xe")
+
+[node name="AudioDeath" type="AudioStreamPlayer" parent="." unique_id=2051467933]
